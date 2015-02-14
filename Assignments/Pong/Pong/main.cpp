@@ -4,8 +4,10 @@
 #include <SDL_image.h>
 
 #include <array>
+#include <math.h>
 
 #include "Ball.h"
+#include "Paddle.h"
 
 #define ORTHOTOP 1.0f
 #define ORTHOBOT -1.0f
@@ -17,34 +19,50 @@ using std::array;
 SDL_Window* displayWindow;
 SDL_Joystick* playerOneController;
 Ball* ball;
+Paddle* paddle;
+Paddle* paddle2;
+
+bool hasCollided(const array<float, 4> &rect1, const array<float, 4> &rect2){
+	return (abs(rect1[0] - rect2[0]) <= (rect1[2] + rect2[2]) / 2 &&
+		abs(rect1[1] - rect2[1]) <= (rect1[3] + rect2[3]) / 2);
+}
 
 void HandleCollisions(){
 	//Collision Rectangles
 	const array<float, 4> ballRect = ball->getRect();
+	const array<float, 4> paddleRect = paddle->getRect();
+	const array<float, 4> paddle2Rect = paddle2->getRect();
 
 	//x y, width, height 
 	//Top
-	if (ballRect[1] + ballRect[3]/2 > ORTHOTOP ){
+	if (ballRect[1] + ballRect[3]/2 >= ORTHOTOP ){
 		ball->hitTop();
 	}
 
 	//Bottom
-	if (ballRect[1] - ballRect[3]/2 < ORTHOBOT ){
+	if (ballRect[1] - ballRect[3]/2 <= ORTHOBOT ){
 		ball->hitTop();
 	}
 
 	//Left
-	if (ballRect[0] - ballRect[2] / 2 > ORTHORIGHT){
+	if (ballRect[0] - ballRect[2] / 2 >= ORTHORIGHT){
 		ball->hitLeft();
 	}
 
 	//Right
-	if (ballRect[0] + ballRect[2] / 2 < ORTHOLEFT){
+	if (ballRect[0] + ballRect[2] / 2 <= ORTHOLEFT){
 		ball->hitLeft();
 	}
 	//Paddle 1
+	if (abs(ballRect[0] - paddleRect[0]) <= ( ballRect[2]+paddleRect[2] )/2 &&
+		abs(ballRect[1] - paddleRect[1]) <= (ballRect[3] + paddleRect[3]) / 2){
+		ball->hitLeft();
+	}
 
 	//Paddle 2
+	if (hasCollided(ballRect, paddle2Rect)){
+		ball->hitLeft();
+	}
 }
 
 void Setup(){
@@ -66,6 +84,8 @@ void Setup(){
 	//Setup Entities
 	//border=1.28,0.95 if width&height = 0.1
 	ball = new Ball(0.0f, 0.0f, 0.0f, 0.05f, 0.05f, "ballBlue.png");
+	paddle = new Paddle(-1.3f, 0.0f, 0.0f, 0.050f, 0.28f, "laserGreen12.png");
+	paddle2 = new Paddle(1.3f, 0.0f, 0.0f, 0.050f, 0.28f, "laserRed12.png");
 }
 
 void ProcessEvents(bool& done){
@@ -114,6 +134,8 @@ void Render(){
 
 	//Setup Transforms Draw 
 	ball->Draw();
+	paddle->Draw();
+	paddle2->Draw();
 
 
 	SDL_GL_SwapWindow(displayWindow);

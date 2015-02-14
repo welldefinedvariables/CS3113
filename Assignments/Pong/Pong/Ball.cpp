@@ -4,7 +4,7 @@ Ball::Ball(const float x, const float y, const float rotation,
 	const float width, const float height, const char *image_path)
 	:x(x), y(y), rotation(rotation), 
 	width(width), height(height), xVelocity(0.0007f), yVelocity(0.0004f),
-	xAcceleration(0.00001), yAcceleration(0.000005){
+	xAcceleration(0.00001f), yAcceleration(0.000005f){
 	
 	LoadTexture(image_path);
 }
@@ -32,8 +32,23 @@ void Ball::LoadTexture(const char *image_path){
 void Ball::Update(){
 	x += xVelocity;
 	y += yVelocity;
+
+	/*
 	xVelocity += xAcceleration;
 	yVelocity += yAcceleration;
+
+
+	//Play around
+	if (xAcceleration > 0.0f){
+		xAcceleration -= 0.0000001f;
+	}
+	else{ xAcceleration += 0.0000001f; }
+
+	if (yAcceleration > 0.0f){
+		yAcceleration -= 0.0000001f; 
+	}
+	else{ yAcceleration += 0.0000001f; }
+	*/
 }
 
 void Ball::Draw(){
@@ -72,9 +87,25 @@ const array<float, 4>& Ball::getRect() const{
 	return { x, y, width, height };
 }
 
+
+//Play around
 void Ball::hitTop(){
 	yVelocity = -yVelocity;
+	//yAcceleration = -1.0f * yAcceleration;
 }
 void Ball::hitLeft(){
 	xVelocity = -xVelocity;
+
+	
+	//Acceleration Settings Play Around
+	if (xAcceleration > 0) {
+		xAcceleration = -0.000001f;
+	}
+	else { xAcceleration = 0.000001f; }
+	
+	if (yAcceleration > 0){
+		yAcceleration = 0.00001f;
+	}
+	else { yAcceleration = -0.00001f; }
+	
 }
