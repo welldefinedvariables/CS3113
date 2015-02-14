@@ -34,12 +34,12 @@ void HandleCollisions(){
 	}
 
 	//Left
-	if (ballRect[0] + ballRect[2] / 2 > ORTHORIGHT){
+	if (ballRect[0] - ballRect[2] / 2 > ORTHORIGHT){
 		ball->hitLeft();
 	}
 
 	//Right
-	if (ballRect[0] - ballRect[2] / 2 < ORTHOLEFT){
+	if (ballRect[0] + ballRect[2] / 2 < ORTHOLEFT){
 		ball->hitLeft();
 	}
 	//Paddle 1
@@ -65,7 +65,7 @@ void Setup(){
 	
 	//Setup Entities
 	//border=1.28,0.95 if width&height = 0.1
-	ball = new Ball(0.0f, 0.0f, 0.0f, 0.1f, 0.1f, "ballBlue.png");
+	ball = new Ball(0.0f, 0.0f, 0.0f, 0.05f, 0.05f, "ballBlue.png");
 }
 
 void ProcessEvents(bool& done){

@@ -3,7 +3,8 @@
 Ball::Ball(const float x, const float y, const float rotation, 
 	const float width, const float height, const char *image_path)
 	:x(x), y(y), rotation(rotation), 
-	width(width), height(height), xVelocity(0.0007f), yVelocity(0.0004f){
+	width(width), height(height), xVelocity(0.0007f), yVelocity(0.0004f),
+	xAcceleration(0.00001), yAcceleration(0.000005){
 	
 	LoadTexture(image_path);
 }
@@ -31,6 +32,8 @@ void Ball::LoadTexture(const char *image_path){
 void Ball::Update(){
 	x += xVelocity;
 	y += yVelocity;
+	xVelocity += xAcceleration;
+	yVelocity += yAcceleration;
 }
 
 void Ball::Draw(){
@@ -57,7 +60,6 @@ void Ball::Draw(){
 
 	glDrawArrays(GL_QUADS, 0, 4);
 	
-	// Effect?
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 	glDisable(GL_BLEND);

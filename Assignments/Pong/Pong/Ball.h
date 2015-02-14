@@ -1,7 +1,6 @@
 #ifndef BALL_H
 #define BALL_H
 
-#include <SDL.h> // Effect?
 #include <SDL_opengl.h>
 #include <SDL_image.h>
 
@@ -36,6 +35,9 @@ private:
 
 	float xVelocity;
 	float yVelocity;
+
+	float xAcceleration;
+	float yAcceleration;
 };
 
 #endif
