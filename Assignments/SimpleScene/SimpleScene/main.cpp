@@ -61,6 +61,7 @@ int main(int argc, char *argv[])
 	displayWindow = SDL_CreateWindow("My Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_OPENGL);
 	SDL_GLContext context = SDL_GL_CreateContext(displayWindow);
 	SDL_GL_MakeCurrent(displayWindow, context);
+	
 
 	//Sets the clear color of the screen
 	glClearColor(0.1f, 0.2f, 0.3f, 1.0f);
@@ -86,7 +87,7 @@ int main(int argc, char *argv[])
 	bool done = false;
 	
 	SDL_Event event;
-
+	
 	while (!done) {
 		while (SDL_PollEvent(&event)) {
 			if (event.type == SDL_QUIT || event.type == SDL_WINDOWEVENT_CLOSE) {
@@ -138,6 +139,7 @@ int main(int argc, char *argv[])
 		DrawSprite(cactusTexture, cactusX, 0.5, 180.0 + cactusAngle);
 
 		SDL_GL_SwapWindow(displayWindow);
+		
 	}
 
 	SDL_Quit();
