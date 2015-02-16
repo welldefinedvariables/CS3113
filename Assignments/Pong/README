@@ -1,0 +1,9 @@
+Controls:
+1 - Set player one controls to mouse move up move down
+2 - Set player one controls to keyboard w,s
+3 - Set player one controls to controller
+4 - Set player two controls to mouse move up move down
+5 - Set player two controls to keyboard up, down
+6 - Set player two controls to controller
+
+Only one player can use the controller or mouse at a time.
