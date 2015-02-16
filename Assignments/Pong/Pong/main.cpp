@@ -53,10 +53,10 @@ void HandleCollisions(){
 	if (ballRect[1] + ballRect[3] / 2 >= ORTHOTOP){
 		ball->hitTop();
 	}
-	if (paddleRect[1] + paddleRect[3] / 2 >= ORTHOTOP){
+	if (paddleRect[1] + paddleRect[3] / 2 > ORTHOTOP){
 		paddle->Stop();
 	}
-	if (paddle2Rect[1] + paddle2Rect[3] / 2 >= ORTHOTOP){
+	if (paddle2Rect[1] + paddle2Rect[3] / 2 > ORTHOTOP){
 		paddle2->Stop();
 	}
 
@@ -64,10 +64,10 @@ void HandleCollisions(){
 	if (ballRect[1] - ballRect[3] / 2 <= ORTHOBOT){
 		ball->hitBot();
 	}
-	if (paddleRect[1] - paddleRect[3] / 2 <= ORTHOBOT){
+	if (paddleRect[1] - paddleRect[3] / 2 < ORTHOBOT){
 		paddle->Stop();
 	}
-	if (paddle2Rect[1] - paddle2Rect[3] / 2 <= ORTHOBOT){
+	if (paddle2Rect[1] - paddle2Rect[3] / 2 < ORTHOBOT){
 		paddle2->Stop();
 	}
 
@@ -107,7 +107,7 @@ void HandleCollisions(){
 void Setup(){
 	//Setup SDL
 	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK);
-	displayWindow = SDL_CreateWindow("My Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_OPENGL);
+	displayWindow = SDL_CreateWindow("PoNg", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_OPENGL);
 	playerOneController = SDL_JoystickOpen(0);
 
 	//Setup OpenGL
