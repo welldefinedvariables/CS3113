@@ -76,7 +76,7 @@ void HandleCollisions(){
 		playerScore++;
 		lose = true;
 
-		loseAnimation = new LoseAnimation(1.33f, ballRect[1], 0.0f, 0.3f, 0.3f, "whitePuff");
+		loseAnimation->Move(1.33f, ballRect[1], lastFrameTicks);
 
 		ball->reset();
 		ball->hitLeft(0.0f, 0.0f);
@@ -87,7 +87,7 @@ void HandleCollisions(){
 		player2Score++;
 		lose = true;
 
-		loseAnimation = new LoseAnimation(-1.33f, ballRect[1], 0.0f, 0.3f, 0.3f, "whitePuff");
+		loseAnimation->Move(-1.33f, ballRect[1], lastFrameTicks);
 
 		ball->reset();
 		ball->hitRight(0.0f, 0.0f);
@@ -125,6 +125,8 @@ void Setup(){
 	ball = new Ball(0.0f, 0.0f, 0.0f, 0.1f, 0.1f, "ballBlue.png");
 	paddle = new Paddle(-1.18f, 0.0f, 0.0f, 0.1f, 0.45f, "laserGreen12.png");
 	paddle2 = new Paddle(1.18f, 0.0f, 0.0f, 0.1f, 0.45f, "laserRed12.png");
+
+	loseAnimation = new LoseAnimation(0.0f, 0.0f, 0.0f, 0.3f, 0.3f, "whitePuff");
 
 	lastFrameTicks = 0.0f;
 
@@ -234,7 +236,7 @@ void ProcessEvents(bool& done){
 				control2 = 2;
 			}
 			else if (event.key.keysym.scancode == SDL_SCANCODE_7){
-				//ball->hitLeft(1.0f,0.0f);
+				ball->hitLeft(0.0f,0.0f);
 			}
 			else if (event.key.keysym.scancode == SDL_SCANCODE_8){
 				//ball->hitLeft(1.0f,1.0f);
@@ -290,14 +292,13 @@ void Update(){
 	float elapsed = ticks - lastFrameTicks;
 	lastFrameTicks = ticks;
 
-	if (lose){
+	if (lose && elapsed){
 		if (loseAnimation->done)
 		{
 			lose = false;
-			delete loseAnimation;
 		}
-		else{
-			loseAnimation->Update();
+		else {
+			loseAnimation->Update(ticks);
 		}
 	}
 		//Movements
@@ -324,8 +325,8 @@ void Render(){
 	paddle->Draw();
 	paddle2->Draw();
 	
-	if (lose && loseAnimation != nullptr) {
-		loseAnimation->Draw();
+	if (lose) {
+ 		loseAnimation->Draw();
 	}
 
 	SDL_GL_SwapWindow(displayWindow);

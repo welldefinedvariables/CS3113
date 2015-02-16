@@ -5,7 +5,9 @@
 #include <SDL_image.h>
 
 #include <string>
+#include <array>
 
+using std::array;
 
 class LoseAnimation{
 public:
@@ -13,17 +15,19 @@ public:
 	~LoseAnimation();
 
 	void LoadTexture(const char *image_path);
-	void Update();
+	void Update(float ticks);
 	void Draw();
 
+	void Move(float x, float y, float startTime);
 	bool done;
 private:
 	float x;
 	float y;
 	float rotation;
 
+	float startTime;
+	array<GLuint,25> textureIDs;
 	GLuint textureID;
-	char *image_path;
 	int index;
 
 	float width;
