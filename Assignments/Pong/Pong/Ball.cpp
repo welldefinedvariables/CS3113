@@ -91,14 +91,14 @@ void Ball::hitBot(){
 void Ball::hitLeft(float hitAngle, float spin){
 	xVelocity = 1.5f;
 	yVelocity = 1.5f*pow(abs(hitAngle), 0.5f)*hitAngle;
-	xAcceleration = -0.8f * abs(spin);
+	xAcceleration = -0.4f * abs(spin);
 	yAcceleration = 4.0f * spin;
 }
 
 void Ball::hitRight(float hitAngle, float spin){
 	xVelocity = -1.5f;
 	yVelocity = 1.5f*pow(abs(hitAngle),0.5f)*hitAngle;
-	xAcceleration = 0.8f * abs(spin);
+	xAcceleration = 0.4f * abs(spin);
 	yAcceleration = 4.0f * spin;
 }
 

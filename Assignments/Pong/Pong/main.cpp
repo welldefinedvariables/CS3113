@@ -234,10 +234,10 @@ void ProcessEvents(bool& done){
 				control2 = 2;
 			}
 			else if (event.key.keysym.scancode == SDL_SCANCODE_7){
-				ball->hitLeft(0.0f,0.0f);
+				//ball->hitLeft(1.0f,0.0f);
 			}
 			else if (event.key.keysym.scancode == SDL_SCANCODE_8){
-				ball->hitRight(0.0f,0.0f);
+				//ball->hitLeft(1.0f,1.0f);
 			}
 
 			//Player 1 Keyboard Control
