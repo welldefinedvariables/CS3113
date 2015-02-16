@@ -10,13 +10,17 @@ using std::array;
 
 class Paddle{
 public:
-	Paddle(const float x, const float y, const float rotation, const float width, const float height, const char *image_path);
+	Paddle(float x, float y, float rotation, float width, float height, char *image_path);
 	~Paddle();
 
 	void LoadTexture(const char *image_path);
-	void Update();
+	void Update(float elapsed);
 	void Draw();
 
+	void Up();
+	void Down();
+	void Stop();
+	float getSpin() const;
 
 	///<summary>Obtains the collision rectangle of Paddle {x, y, width, height}</summary>
 	const array<float, 4>& getRect() const;
@@ -33,6 +37,9 @@ private:
 
 	float xVelocity;
 	float yVelocity;
+
+	float xAcceleration;
+	float yAcceleration;
 };
 
 #endif

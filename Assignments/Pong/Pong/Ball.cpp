@@ -1,10 +1,10 @@
 #include "Ball.h"
 
-Ball::Ball(const float x, const float y, const float rotation, 
-	const float width, const float height, const char *image_path)
+Ball::Ball(float x, float y, float rotation, 
+	float width, float height, char *image_path)
 	:x(x), y(y), rotation(rotation), 
-	width(width), height(height), xVelocity(0.0007f), yVelocity(0.0004f),
-	xAcceleration(0.00001f), yAcceleration(0.000005f){
+	width(width), height(height), xVelocity(0.0f), yVelocity(0.0f),
+	xAcceleration(0.0f), yAcceleration(0.0f){
 	
 	LoadTexture(image_path);
 }
@@ -29,26 +29,13 @@ void Ball::LoadTexture(const char *image_path){
 	SDL_FreeSurface(surface);
 }
 
-void Ball::Update(){
-	x += xVelocity;
-	y += yVelocity;
-
-	/*
-	xVelocity += xAcceleration;
-	yVelocity += yAcceleration;
-
-
-	//Play around
-	if (xAcceleration > 0.0f){
-		xAcceleration -= 0.0000001f;
-	}
-	else{ xAcceleration += 0.0000001f; }
-
-	if (yAcceleration > 0.0f){
-		yAcceleration -= 0.0000001f; 
-	}
-	else{ yAcceleration += 0.0000001f; }
-	*/
+void Ball::Update(float elapsed){
+	x += xVelocity * elapsed;
+	y += yVelocity * elapsed;
+	xVelocity += xAcceleration * elapsed;
+	yVelocity += yAcceleration * elapsed;
+	
+	rotation += 5.0f;
 }
 
 void Ball::Draw(){
@@ -90,22 +77,36 @@ const array<float, 4>& Ball::getRect() const{
 
 //Play around
 void Ball::hitTop(){
-	yVelocity = -yVelocity;
-	//yAcceleration = -1.0f * yAcceleration;
+	yVelocity = -abs(yVelocity);
+	xAcceleration = 0.0f;
+	yAcceleration = 0.0f;
 }
-void Ball::hitLeft(){
-	xVelocity = -xVelocity;
 
-	
-	//Acceleration Settings Play Around
-	if (xAcceleration > 0) {
-		xAcceleration = -0.000001f;
-	}
-	else { xAcceleration = 0.000001f; }
-	
-	if (yAcceleration > 0){
-		yAcceleration = 0.00001f;
-	}
-	else { yAcceleration = -0.00001f; }
-	
+void Ball::hitBot(){
+	yVelocity = abs(yVelocity);
+	xAcceleration = 0.0f;
+	yAcceleration = 0.0f;
+}
+
+void Ball::hitLeft(float hitAngle, float spin){
+	xVelocity = 1.5f;
+	yVelocity = 1.5f*pow(abs(hitAngle), 0.5f)*hitAngle;
+	xAcceleration = -0.8f * abs(spin);
+	yAcceleration = 4.0f * spin;
+}
+
+void Ball::hitRight(float hitAngle, float spin){
+	xVelocity = -1.5f;
+	yVelocity = 1.5f*pow(abs(hitAngle),0.5f)*hitAngle;
+	xAcceleration = 0.8f * abs(spin);
+	yAcceleration = 4.0f * spin;
+}
+
+void Ball::reset(){
+	x = 0.0f;
+	y = 0.0f;
+	xVelocity = 0.0f;
+	yVelocity = 0.0f;
+	xAcceleration = 0.0f;
+	yAcceleration = 0.0f;
 }

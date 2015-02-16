@@ -5,23 +5,27 @@
 #include <SDL_image.h>
 
 #include <array>
+#include <math.h>
 
 using std::array;
 
 class Ball{
 public:
-	Ball(const float x, const float y, const float rotation, const float width, const float height, const char *image_path);
+	Ball(float x, float y, float rotation, float width, float height, char *image_path);
 	~Ball();
 
 	void LoadTexture(const char *image_path);
-	void Update();
+	void Update(float elapsed);
 	void Draw();
 
 	
 	///<summary>Obtains the collision rectangle of Ball {x, y, width, height}</summary>
 	const array<float, 4>& getRect() const;
 	void hitTop();
-	void hitLeft();
+	void hitBot();
+	void hitLeft(float hitAngle, float spin);
+	void hitRight(float hitAngle, float spin);
+	void reset();
 
 private:
 	float x;

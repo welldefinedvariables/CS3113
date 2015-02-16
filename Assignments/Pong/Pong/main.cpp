@@ -8,6 +8,7 @@
 
 #include "Ball.h"
 #include "Paddle.h"
+#include "LoseAnimation.h"
 
 #define ORTHOTOP 1.0f
 #define ORTHOBOT -1.0f
@@ -18,9 +19,23 @@ using std::array;
 
 SDL_Window* displayWindow;
 SDL_Joystick* playerOneController;
+
 Ball* ball;
 Paddle* paddle;
 Paddle* paddle2;
+
+float lastFrameTicks;
+
+int control1; // 0 = mouse, 1 = keyboard, 2 = controller
+int control2;
+
+int playerScore;
+int player2Score;
+
+bool newGame;
+
+LoseAnimation* loseAnimation;
+bool lose;
 
 bool hasCollided(const array<float, 4> &rect1, const array<float, 4> &rect2){
 	return (abs(rect1[0] - rect2[0]) <= (rect1[2] + rect2[2]) / 2 &&
@@ -35,33 +50,57 @@ void HandleCollisions(){
 
 	//x y, width, height 
 	//Top
-	if (ballRect[1] + ballRect[3]/2 >= ORTHOTOP ){
+	if (ballRect[1] + ballRect[3] / 2 >= ORTHOTOP){
 		ball->hitTop();
+	}
+	if (paddleRect[1] + paddleRect[3] / 2 >= ORTHOTOP){
+		paddle->Stop();
+	}
+	if (paddle2Rect[1] + paddle2Rect[3] / 2 >= ORTHOTOP){
+		paddle2->Stop();
 	}
 
 	//Bottom
-	if (ballRect[1] - ballRect[3]/2 <= ORTHOBOT ){
-		ball->hitTop();
+	if (ballRect[1] - ballRect[3] / 2 <= ORTHOBOT){
+		ball->hitBot();
 	}
-
-	//Left
-	if (ballRect[0] - ballRect[2] / 2 >= ORTHORIGHT){
-		ball->hitLeft();
+	if (paddleRect[1] - paddleRect[3] / 2 <= ORTHOBOT){
+		paddle->Stop();
+	}
+	if (paddle2Rect[1] - paddle2Rect[3] / 2 <= ORTHOBOT){
+		paddle2->Stop();
 	}
 
 	//Right
+	if (ballRect[0] - ballRect[2] / 2 >= ORTHORIGHT){
+		playerScore++;
+		lose = true;
+
+		loseAnimation = new LoseAnimation(1.33f, ballRect[1], 0.0f, 0.3f, 0.3f, "whitePuff");
+
+		ball->reset();
+		ball->hitLeft(0.0f, 0.0f);
+	}
+
+	//Left
 	if (ballRect[0] + ballRect[2] / 2 <= ORTHOLEFT){
-		ball->hitLeft();
+		player2Score++;
+		lose = true;
+
+		loseAnimation = new LoseAnimation(-1.33f, ballRect[1], 0.0f, 0.3f, 0.3f, "whitePuff");
+
+		ball->reset();
+		ball->hitRight(0.0f, 0.0f);
 	}
 	//Paddle 1
-	if (abs(ballRect[0] - paddleRect[0]) <= ( ballRect[2]+paddleRect[2] )/2 &&
+	if (abs(ballRect[0] - paddleRect[0]) <= (ballRect[2] + paddleRect[2]) / 2 &&
 		abs(ballRect[1] - paddleRect[1]) <= (ballRect[3] + paddleRect[3]) / 2){
-		ball->hitLeft();
+		ball->hitLeft((ballRect[1] - paddleRect[1]) / (paddleRect[3] / 2), paddle->getSpin());
 	}
 
 	//Paddle 2
 	if (hasCollided(ballRect, paddle2Rect)){
-		ball->hitLeft();
+		ball->hitRight((ballRect[1] - paddle2Rect[1]) / (paddle2Rect[3] / 2), paddle2->getSpin());
 	}
 }
 
@@ -80,18 +119,29 @@ void Setup(){
 	glOrtho(-1.33, 1.33, -1.0, 1.0, -1.0, 1.0);
 	glClearColor(0.1f, 0.2f, 0.3f, 1.0f);
 	//Setup Projection Matrix
-	
+
 	//Setup Entities
 	//border=1.28,0.95 if width&height = 0.1
-	ball = new Ball(0.0f, 0.0f, 0.0f, 0.05f, 0.05f, "ballBlue.png");
-	paddle = new Paddle(-1.3f, 0.0f, 0.0f, 0.050f, 0.28f, "laserGreen12.png");
-	paddle2 = new Paddle(1.3f, 0.0f, 0.0f, 0.050f, 0.28f, "laserRed12.png");
+	ball = new Ball(0.0f, 0.0f, 0.0f, 0.1f, 0.1f, "ballBlue.png");
+	paddle = new Paddle(-1.18f, 0.0f, 0.0f, 0.1f, 0.45f, "laserGreen12.png");
+	paddle2 = new Paddle(1.18f, 0.0f, 0.0f, 0.1f, 0.45f, "laserRed12.png");
+
+	lastFrameTicks = 0.0f;
+
+	control1 = 0;
+	control2 = 1;
+
+	playerScore = 0;
+	player2Score = 0;
+
+	newGame = true;
+	lose = false;
 }
 
 void ProcessEvents(bool& done){
 	//SDL event loop
 	SDL_Event event;
-	
+
 	while (SDL_PollEvent(&event)) {
 		//Check Input Events
 
@@ -101,6 +151,30 @@ void ProcessEvents(bool& done){
 		}
 		//Mouse
 		else if (event.type == SDL_MOUSEMOTION){
+			if (event.motion.yrel < 0){
+				if (control1 == 0){
+					paddle->Up();
+				}
+				if (control2 == 0){
+					paddle2->Up();
+				}
+			}
+			else if (event.motion.yrel > 0){
+				if (control1 == 0){
+					paddle->Down();
+				}
+				if (control2 == 0){
+					paddle2->Down();
+				}
+			}
+			else {
+				if (control1 == 0){
+					paddle->Stop();
+				}
+				if (control2 == 0){
+					paddle2->Stop();
+				}
+			}
 
 		}
 		else if (event.type == SDL_MOUSEBUTTONDOWN){
@@ -108,24 +182,137 @@ void ProcessEvents(bool& done){
 		}
 		//Controller
 		else if (event.type == SDL_JOYAXISMOTION){
-
+			if (event.jaxis.axis == 1)
+			{
+				if (event.jaxis.value > 0){
+					if (control1 == 0){
+						paddle->Up();
+					}
+					if (control2 == 0){
+						paddle2->Up();
+					}
+				}
+				else if (event.jaxis.value < 0){
+					if (control1 == 0){
+						paddle->Stop();
+					}
+					if (control2 == 0){
+						paddle2->Stop();
+					}
+				}
+			}
+			else {
+				if (control1 == 0){
+					paddle->Stop();
+				}
+				if (control2 == 0){
+					paddle2->Stop();
+				}
+			}
 		}
 		else if (event.type == SDL_JOYBUTTONDOWN){
 
 		}
 		//Keyboard
+		else if (event.type == SDL_KEYDOWN){
+			if (event.key.keysym.scancode == SDL_SCANCODE_1){
+				control1 = 0;
+			}
+			else if (event.key.keysym.scancode == SDL_SCANCODE_2){
+				control1 = 1;
+			}
+			else if (event.key.keysym.scancode == SDL_SCANCODE_3){
+				control1 = 2;
+			}
+			else if (event.key.keysym.scancode == SDL_SCANCODE_4){
+				control2 = 0;
+			}
+			else if (event.key.keysym.scancode == SDL_SCANCODE_5){
+				control2 = 1;
+			}
+			else if (event.key.keysym.scancode == SDL_SCANCODE_6){
+				control2 = 2;
+			}
+			else if (event.key.keysym.scancode == SDL_SCANCODE_7){
+				ball->hitLeft(0.0f,0.0f);
+			}
+			else if (event.key.keysym.scancode == SDL_SCANCODE_8){
+				ball->hitRight(0.0f,0.0f);
+			}
 
+			//Player 1 Keyboard Control
+			else {
+				if (control1 == 1){
+					if (event.key.keysym.scancode == SDL_SCANCODE_W){
+						paddle->Up();
+					}
+					else if (event.key.keysym.scancode == SDL_SCANCODE_S){
+						paddle->Down();
+					}
+				}
+
+				//Player 2 Keyboard Control
+				if (control2 == 1){
+					if (event.key.keysym.scancode == SDL_SCANCODE_UP){
+						paddle2->Up();
+					}
+					else if (event.key.keysym.scancode == SDL_SCANCODE_DOWN){
+						paddle2->Down();
+					}
+				}
+			}
+		}
+		else if (event.type == SDL_KEYUP){
+			if (control1 == 1){
+				if (event.key.keysym.scancode == SDL_SCANCODE_W){
+					paddle->Stop();
+				}
+				else if (event.key.keysym.scancode == SDL_SCANCODE_S){
+					paddle->Stop();
+				}
+			}
+			if (control2 == 1){
+				if (event.key.keysym.scancode == SDL_SCANCODE_UP){
+					paddle2->Stop();
+				}
+				else if (event.key.keysym.scancode == SDL_SCANCODE_DOWN){
+					paddle2->Stop();
+				}
+			}
+		}
 	}
 }
 
 void Update(){
 	//Physics
+
+	float ticks = (float)SDL_GetTicks() / 1000.0f;
+	float elapsed = ticks - lastFrameTicks;
+	lastFrameTicks = ticks;
+
+	if (lose){
+		if (loseAnimation->done)
+		{
+			lose = false;
+			delete loseAnimation;
+		}
+		else{
+			loseAnimation->Update();
+		}
+	}
+		//Movements
+		ball->Update(elapsed);
+		paddle->Update(elapsed);
+		paddle2->Update(elapsed);
+
+		if (newGame){
+			ball->hitLeft(0.0f, 0.0f);
+			newGame = false;
+		}
+
+		//Collisions
+		HandleCollisions();
 	
-	//Movements
-	ball->Update();
-	
-	//Collisions
-	HandleCollisions();
 }
 
 void Render(){
@@ -136,7 +323,10 @@ void Render(){
 	ball->Draw();
 	paddle->Draw();
 	paddle2->Draw();
-
+	
+	if (lose && loseAnimation != nullptr) {
+		loseAnimation->Draw();
+	}
 
 	SDL_GL_SwapWindow(displayWindow);
 }
@@ -148,17 +338,16 @@ void CleanUp(){
 int main(int argc, char *argv[])
 {
 	Setup();
-	
+
 	bool done = false;
-	
+
 	//SDL_Event event;
 
 	while (!done) {
-		
 		ProcessEvents(done);
 		Update();
 		Render();
-		
+
 	}
 
 	CleanUp();

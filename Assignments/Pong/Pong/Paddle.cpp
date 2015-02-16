@@ -1,9 +1,9 @@
 #include "Paddle.h"
 
-Paddle::Paddle(const float x, const float y, const float rotation,
-	const float width, const float height, const char *image_path)
+Paddle::Paddle(float x, float y, float rotation,
+	float width, float height, char *image_path)
 	:x(x), y(y), rotation(rotation),
-	width(width), height(height), xVelocity(0.0f), yVelocity(0.0f){
+	width(width), height(height), xVelocity(0.0f), yVelocity(0.0f), xAcceleration(0.0f), yAcceleration(0.0f){
 
 	LoadTexture(image_path);
 }
@@ -28,8 +28,10 @@ void Paddle::LoadTexture(const char *image_path){
 	SDL_FreeSurface(surface);
 }
 
-void Paddle::Update(){
-	
+void Paddle::Update(float elapsed){
+	y += yVelocity * elapsed;
+	yAcceleration *= 0.99;
+	//x = yAcceleration / (-1.0f);
 }
 
 void Paddle::Draw(){
@@ -66,4 +68,37 @@ void Paddle::Draw(){
 
 const array<float, 4>& Paddle::getRect() const{
 	return{ x, y, width, height };
+}
+
+void Paddle::Up(){
+	yVelocity = 1.5f;
+	if (yAcceleration == 0.0f)
+	{
+		yAcceleration = -1.0f;
+	}
+}
+
+void Paddle::Down(){
+	yVelocity = -1.5f;
+	if (yAcceleration == 0.0f)
+	{
+		yAcceleration = 1.0f;
+	}
+}
+
+void Paddle::Stop(){
+	yAcceleration = 0.0f;
+	if (yVelocity != 0.0f){
+		if (y > 1.0f - height / 2){
+			y = 1.0f - height/2;
+		}
+		else if (y < -1.0f + height / 2){
+			y = -1.0f + height/2;
+		}
+		yVelocity = 0.0f;
+	}
+}
+
+float Paddle::getSpin() const{
+	return yAcceleration;
 }
