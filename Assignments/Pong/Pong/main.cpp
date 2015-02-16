@@ -102,6 +102,41 @@ void HandleCollisions(){
 	if (hasCollided(ballRect, paddle2Rect)){
 		ball->hitRight((ballRect[1] - paddle2Rect[1]) / (paddle2Rect[3] / 2), paddle2->getSpin());
 	}
+
+	//Ai Players
+
+	if (control1 == 4){
+
+		if (ballRect[1] > (paddleRect[1] + paddleRect[3] / 2))
+		{
+			paddle->Up();
+		}
+		else if (ballRect[1] < (paddleRect[1] + paddleRect[3] / 2))
+		{
+			paddle->Down();
+		}
+		else{
+			paddle->Stop();
+		}
+	}
+	if (control2 == 3){
+		if ((paddle2Rect[0] - ballRect[0]) < 0.1)
+		{
+			paddle2->Stop();
+		}
+		if (ballRect[1] > paddle2Rect[1])
+		{
+			paddle2->Up();
+		}
+		else if (ballRect[1] < paddle2Rect[1])
+		{
+			paddle2->Down();
+		}
+		else{
+			paddle2->Stop();
+		}
+	}
+
 }
 
 void Setup(){
@@ -227,18 +262,24 @@ void ProcessEvents(bool& done){
 				control1 = 2;
 			}
 			else if (event.key.keysym.scancode == SDL_SCANCODE_4){
-				control2 = 0;
+				control1 = 4;
 			}
 			else if (event.key.keysym.scancode == SDL_SCANCODE_5){
-				control2 = 1;
+				control2 = 0;
 			}
 			else if (event.key.keysym.scancode == SDL_SCANCODE_6){
-				control2 = 2;
+				control2 = 1;
 			}
 			else if (event.key.keysym.scancode == SDL_SCANCODE_7){
-				ball->hitLeft(0.0f,0.0f);
+				control2 = 2;
 			}
 			else if (event.key.keysym.scancode == SDL_SCANCODE_8){
+				control2 = 3;
+			}
+			else if (event.key.keysym.scancode == SDL_SCANCODE_9){
+				//control2 = 3;
+			}
+			else if (event.key.keysym.scancode == SDL_SCANCODE_0){
 				//ball->hitLeft(1.0f,1.0f);
 			}
 
@@ -282,6 +323,7 @@ void ProcessEvents(bool& done){
 				}
 			}
 		}
+
 	}
 }
 
@@ -301,19 +343,19 @@ void Update(){
 			loseAnimation->Update(ticks);
 		}
 	}
-		//Movements
-		ball->Update(elapsed);
-		paddle->Update(elapsed);
-		paddle2->Update(elapsed);
+	//Movements
+	ball->Update(elapsed);
+	paddle->Update(elapsed);
+	paddle2->Update(elapsed);
 
-		if (newGame){
-			ball->hitLeft(0.0f, 0.0f);
-			newGame = false;
-		}
+	if (newGame){
+		ball->hitLeft(0.0f, 0.0f);
+		newGame = false;
+	}
 
-		//Collisions
-		HandleCollisions();
-	
+	//Collisions
+	HandleCollisions();
+
 }
 
 void Render(){
@@ -324,9 +366,9 @@ void Render(){
 	ball->Draw();
 	paddle->Draw();
 	paddle2->Draw();
-	
+
 	if (lose) {
- 		loseAnimation->Draw();
+		loseAnimation->Draw();
 	}
 
 	SDL_GL_SwapWindow(displayWindow);
