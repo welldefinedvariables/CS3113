@@ -107,11 +107,11 @@ void HandleCollisions(){
 
 	if (control1 == 4){
 
-		if (ballRect[1] > (paddleRect[1] + paddleRect[3] / 2))
+		if (ballRect[1] > (paddleRect[1] + paddleRect[3] / 4))
 		{
 			paddle->Up();
 		}
-		else if (ballRect[1] < (paddleRect[1] + paddleRect[3] / 2))
+		else if (ballRect[1] < (paddleRect[1] + paddleRect[3] / 4))
 		{
 			paddle->Down();
 		}

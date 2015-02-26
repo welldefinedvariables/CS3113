@@ -31,7 +31,6 @@ GLuint LoadTexture(const char *image_path){
 
 void DrawSprite(GLint texture, float x, float y, float rotation){
 	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, texture);
 	
 	glMatrixMode(GL_MODELVIEW);
 
@@ -43,6 +42,7 @@ void DrawSprite(GLint texture, float x, float y, float rotation){
 	glVertexPointer(2, GL_FLOAT, 0, quad);
 	glEnableClientState(GL_VERTEX_ARRAY);
 	
+	glBindTexture(GL_TEXTURE_2D, texture);
 	GLfloat quadUVs[] = { 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 0.0 };
 	glTexCoordPointer(2, GL_FLOAT, 0, quadUVs);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
