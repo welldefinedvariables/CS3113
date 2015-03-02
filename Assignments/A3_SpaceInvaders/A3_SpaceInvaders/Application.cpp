@@ -16,7 +16,7 @@ Application::Application(){
 	
 	currentState = &mainMenu;
 	//currentState = &gameLevel;
-	//currentState = &gameOver;
+	currentState = &gameOver;
 }
 
 Application::~Application(){
@@ -35,7 +35,7 @@ void Application::Init(){
 	glViewport(0, 0, 800, 600);
 	glMatrixMode(GL_PROJECTION);
 	glOrtho(-1.33, 1.33, -1.0, 1.0, -1.0, 1.0);
-	glClearColor(0.1f, 0.2f, 0.3f, 1.0f);
+	glClearColor(0.3f, 0.0f, 0.0f, 1.0f);
 
 
 }
@@ -44,21 +44,22 @@ bool Application::Run(){
 	float ticks = (float)SDL_GetTicks() / 1000.0f;
 	float elapsed = ticks - lastFrameTicks;
 	lastFrameTicks = ticks;
-	
+
 	float fixedElapsed = elapsed + timeLeftOver;
 	if (fixedElapsed > FIXED_TIMESTEP * MAX_TIMESTEPS){
 		fixedElapsed = FIXED_TIMESTEP * MAX_TIMESTEPS;
 	}
 
 	ProcessEvents();
-	
+
 	while (fixedElapsed >= FIXED_TIMESTEP){
 		fixedElapsed -= FIXED_TIMESTEP;
-		//Render(FIXED_TIMESTEP);
+		Update(FIXED_TIMESTEP);
 	}
-	Update(elapsed);
+	timeLeftOver = fixedElapsed;
+	
+	//Update(elapsed);
 	Render(elapsed);
-
 	return done;
 }
 
@@ -69,8 +70,8 @@ void Application::ProcessEvents(){
 		{
 			done = true;
 		}
-		currentState->ProcessEvents(event);
 	}
+	currentState->ProcessEvents(event);
 
 	GAMESTATE nextState = currentState->getNextState();
 	if (nextState != STATE_CURRENT){
@@ -114,6 +115,5 @@ void Application::Render(float elapsed){
 	if (displayWindow){
 		SDL_GL_SwapWindow(displayWindow);
 	}
-
 }
 

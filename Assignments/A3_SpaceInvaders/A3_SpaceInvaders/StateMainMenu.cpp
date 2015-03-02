@@ -14,12 +14,18 @@ void StateMainMenu::Init(){
 }
 
 void StateMainMenu::ProcessEvents(SDL_Event& event){
+	const Uint8* keys = SDL_GetKeyboardState(NULL);
+	if (keys[SDL_SCANCODE_RETURN]){
+		done = true;
+		nextState = STATE_GAME_LEVEL;
+	}
+	/*
 	if (event.type == SDL_KEYDOWN){
 		if (event.key.keysym.scancode == SDL_SCANCODE_RETURN){
 			done = true;
 			nextState = STATE_GAME_LEVEL;
 		}
-	}
+	}*/
 }
 void StateMainMenu::Update(float elapsed){}
 void StateMainMenu::Render(float elapsed){

@@ -8,6 +8,11 @@ public:
 	~SpriteBase();
 
 	virtual void Draw(float elapsed, float x, float y);
+	virtual void DrawRGBA(float elapsed, float x, float y, float r, float g, float b, float a);
+	virtual void DrawRGBA(float elapsed, float x, float y, float scaleX, float scaleY, float r, float g, float b, float a);
+
+
+
 	float getWidth() const;
 	float getHeight() const;
 protected:

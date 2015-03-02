@@ -1,10 +1,19 @@
 #pragma once
 
-#include "EntityBase.h"
 #include "StateBase.h"
-#include "Player.h"
+
+#include "EntityBase.h"
 #include "Entity.h"
+
 #include "SpriteBase.h"
+
+#include "Player.h"
+#include "Enemy.h"
+#include "Bullet.h"
+
+#include <ctime>
+#include <array>
+using std::array;
 
 class StateGameLevel:public StateBase{
 public:
@@ -17,8 +26,14 @@ public:
 	void Update(float elapsed);
 	void Render(float elapsed);
 
+	unsigned int getScore() const;
+
 private:
-	std::vector<EntityBase*> entities;
-	std::vector<EntityBase*> bullets;
+	unsigned int score;
+
+	std::vector<Enemy*> enemies;
+	std::vector<Bullet*> bullets;
 	Player* player;
+	Bullet* playerBullet;
+	SpriteBase* bSprite;
 };

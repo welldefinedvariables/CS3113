@@ -11,6 +11,12 @@ EntityBase::~EntityBase(){
 }
 
 void EntityBase::Update(float elapsed){
+	xVelocity = lerp(xVelocity, 0.0f, elapsed * 5.0f);
+	yVelocity = lerp(yVelocity, 0.0f, elapsed * 5.0f);
+
+	xVelocity += xAcceleration * elapsed;
+	yVelocity += yAcceleration * elapsed;
+
 	x += xVelocity * elapsed;
 	y += yVelocity * elapsed;
 }

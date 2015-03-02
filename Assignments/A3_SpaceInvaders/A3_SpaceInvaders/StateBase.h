@@ -26,7 +26,7 @@ public:
 protected:
 	bool done;
 	GAMESTATE nextState;
-
+	GLuint fontTexture;
 };
 
 GLuint LoadTexture(const char *image_path);

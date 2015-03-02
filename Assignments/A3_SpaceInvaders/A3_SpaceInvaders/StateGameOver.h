@@ -1,6 +1,7 @@
 #pragma once
 #include "StateBase.h"
 
+
 class StateGameOver : public StateBase{
 public:
 	StateGameOver();
@@ -13,5 +14,5 @@ public:
 	void Render(float elapsed);
 
 private:
-	GLuint fontTexture;
+	
 };

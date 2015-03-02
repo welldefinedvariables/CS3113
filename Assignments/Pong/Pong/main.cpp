@@ -329,7 +329,6 @@ void ProcessEvents(bool& done){
 
 void Update(){
 	//Physics
-
 	float ticks = (float)SDL_GetTicks() / 1000.0f;
 	float elapsed = ticks - lastFrameTicks;
 	lastFrameTicks = ticks;
