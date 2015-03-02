@@ -16,7 +16,7 @@ Application::Application(){
 	
 	currentState = &mainMenu;
 	//currentState = &gameLevel;
-	currentState = &gameOver;
+	//currentState = &gameOver;
 }
 
 Application::~Application(){
