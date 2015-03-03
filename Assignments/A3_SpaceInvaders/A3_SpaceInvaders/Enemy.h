@@ -18,6 +18,10 @@ public:
 	void disable();
 	unsigned int getScore();
 
+	void reset();
+
 private:
 	unsigned int score;
+	float xInitial;
+	float yInitial;
 };

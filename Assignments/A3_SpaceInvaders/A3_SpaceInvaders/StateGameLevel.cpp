@@ -65,6 +65,7 @@ StateGameLevel::~StateGameLevel(){}
 
 void StateGameLevel::Init(){
 	StateBase::Init();
+	Reset();
 }
 
 void StateGameLevel::ProcessEvents(SDL_Event& event){
@@ -103,16 +104,23 @@ void StateGameLevel::Update(float elapsed){
 		timeElapsed = 0.0;
 		if (bullets.size() < 10){
 			int index = std::rand() % 11; 
-			while (!enemies[index]->isEnabled()){
+			
+			size_t maxLoop = 6;
+			size_t currentLoop = 0;
+
+			while (!enemies[index]->isEnabled() && currentLoop < maxLoop){
 				index += 11;
-				if (index > enemies.size()){
+				if (index > enemies.size() -  1){
 					index = std::rand() % 11;
 				}
+				currentLoop++;
 			}
-			const array<float, 4> enemyRect = enemies[index]->getRect();
-			Bullet *bullet = new Bullet(*bSprite, enemyRect[0], enemyRect[1]);
-			bullet->Shoot(enemyRect[0], enemyRect[1], -1.0);
-			bullets.push_back(bullet);
+			if (enemies[index]->isEnabled()){
+				const array<float, 4> enemyRect = enemies[index]->getRect();
+				Bullet *bullet = new Bullet(*bSprite, enemyRect[0], enemyRect[1]);
+				bullet->Shoot(enemyRect[0], enemyRect[1], -1.0);
+				bullets.push_back(bullet);
+			}
 		}
 	}
 	const array<float, 4> rightWall = { 1.33f, 0.0f, 0.1, 2.0 };
@@ -179,6 +187,7 @@ void StateGameLevel::Update(float elapsed){
 		if (bullets[i]->isEnabled()){
 			if (hasCollided(playerRect, bulletRects[i])){
 				bulletTouchPlayer = true;
+				bullets[i]->disable();
 			}
 		}
 	}
@@ -230,4 +239,14 @@ void StateGameLevel::Render(float elapsed){
 
 unsigned int StateGameLevel::getScore() const{
 	return score;
+}
+
+void StateGameLevel::Reset(){
+	for (size_t i = 0; i < enemies.size(); i++){
+		enemies[i]->reset();
+	}
+	for (size_t i = 0; i < bullets.size(); i++){
+		delete bullets[i];
+		bullets.erase(bullets.begin() + i);
+	}
 }

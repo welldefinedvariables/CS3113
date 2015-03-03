@@ -1,19 +1,26 @@
 #include "Enemy.h"
 
-Enemy::Enemy(SpriteBase sprite, float x, float y, unsigned int score) :Entity<SpriteBase>(sprite, x, y), score(score){
+Enemy::Enemy(SpriteBase sprite, float x, float y, unsigned int score) :Entity<SpriteBase>(sprite, x, y), score(score), xInitial(x), yInitial(y){
 	Right();
 }
 
 void Enemy::Update(float elapsed){
 	if (enabled){
-		xAcceleration = lerp(xAcceleration, 0.0f, elapsed * 0.5f);
+		if (abs(xAcceleration) < 0.25){
+			if (xAcceleration > 0){
+				xAcceleration += 1.00;
+			}
+			else { xAcceleration -= 1.00; }
+		}
+
+		xAcceleration = lerp(xAcceleration, 0.0f, elapsed * 2.5f);
 		Entity::Update(elapsed);
 	}
 }
 
 void Enemy::Render(float elapsed){
 	if (enabled){
-		sprite.DrawRGBA(elapsed, x, y, (16.0 - abs(xAcceleration)) / 12.0, 1.0, 1.0, 0.5, 0.5, 1.0);
+		sprite.DrawRGBA(elapsed, x, y, (4.0 - abs(xVelocity)) / 3.0, 1.0, 1.0, 0.5, 0.5, 1.0);
 	}
 }
 
@@ -29,10 +36,10 @@ void Enemy::Move(){
 }
 
 void Enemy::Left(){
-	xAcceleration = -1.5;
+	xAcceleration = -2.75;
 }
 void Enemy::Right(){
-	xAcceleration = 1.5;
+	xAcceleration = 2.75;
 }
 
 unsigned int Enemy::getScore(){
@@ -41,4 +48,14 @@ unsigned int Enemy::getScore(){
 
 void Enemy::disable(){
 	enabled = false;
+}
+
+void Enemy::reset(){
+	enabled = true;
+	x = xInitial; 
+	y = yInitial;
+	xVelocity = 0;
+	yVelocity = 0;
+	xAcceleration = 0;
+	Right();
 }

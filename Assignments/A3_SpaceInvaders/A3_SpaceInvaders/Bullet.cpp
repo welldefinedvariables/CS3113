@@ -19,7 +19,7 @@ void Bullet::Shoot(float x, float y, float direction){
 	if (!enabled){
 		this->x = x;
 		this->y = y;
-		yAcceleration = 6.0f * direction; 
+		yAcceleration =  6.0f * direction; 
 		enabled = true;
 	}
 }

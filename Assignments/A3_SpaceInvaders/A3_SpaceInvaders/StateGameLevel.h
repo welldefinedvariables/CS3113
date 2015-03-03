@@ -27,7 +27,7 @@ public:
 	void Render(float elapsed);
 
 	unsigned int getScore() const;
-
+	void Reset();
 private:
 	unsigned int score;
 
