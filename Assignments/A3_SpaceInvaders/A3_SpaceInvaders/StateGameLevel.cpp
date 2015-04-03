@@ -1,5 +1,5 @@
 #include "StateGameLevel.h"
-float bulletsPerSecond = 4.0f;
+float bulletsPerSecond = 3.0f;
 float timeElapsed = 0.0f;
 
 bool hasCollided(const array<float, 4>& rect1, const array<float, 4>& rect2){
@@ -242,6 +242,7 @@ unsigned int StateGameLevel::getScore() const{
 }
 
 void StateGameLevel::Reset(){
+	score = 0;
 	for (size_t i = 0; i < enemies.size(); i++){
 		enemies[i]->reset();
 	}
