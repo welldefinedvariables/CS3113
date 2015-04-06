@@ -28,16 +28,15 @@ public:
 	void ProcessEvents(SDL_Event& event);
 	void Update(float elapsed);
 	void Render(float elapsed);
+	void detectCollisionX(PlatformerEntity* entity, std::vector<PlatformerEntity*> &entities);
+	void detectCollisionY(PlatformerEntity* entity, std::vector<PlatformerEntity*> &entities);
 
 	unsigned int getScore() const;
 	void Reset();
 private:
 	unsigned int score;
 	std::vector<PlatformerEntity*> platformEntities;
-	std::vector<Enemy*> enemies;
-	std::vector<Bullet*> bullets;
 	PlatformerEntity* player;
 	
-	Bullet* playerBullet;
 	SpriteBase* bSprite;
 };

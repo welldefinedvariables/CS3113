@@ -23,5 +23,5 @@ void PlatformerEntity::Render(float elapsed){
 }
 
 const std::array<float, 4> PlatformerEntity::getRect() const{
-	return{ x, y, sprite.getWidth(), sprite.getHeight() };
+	return{ this->x, this->y, sprite.getWidth(), sprite.getHeight() };
 }

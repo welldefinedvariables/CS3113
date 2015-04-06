@@ -1,8 +1,5 @@
 #include "Application.h"
 
-#define FIXED_TIMESTEP 0.01666666f
-#define MAX_TIMESTEPS 6
-
 Application::Application(){
 	Init();
 	done = false;
@@ -52,27 +49,6 @@ bool Application::Run(){
 
 	ProcessEvents();
 
-	while (fixedElapsed >= FIXED_TIMESTEP){
-		fixedElapsed -= FIXED_TIMESTEP;
-		Update(FIXED_TIMESTEP);
-	}
-	timeLeftOver = fixedElapsed;
-	
-	//Update(elapsed);
-	Render(elapsed);
-	return done;
-}
-
-void Application::ProcessEvents(){
-	SDL_Event event;
-	while (SDL_PollEvent(&event)){
-		if (event.type == SDL_QUIT || event.type == SDL_WINDOWEVENT_CLOSE)
-		{
-			done = true;
-		}
-	}
-	currentState->ProcessEvents(event);
-
 	GAMESTATE nextState = currentState->getNextState();
 	if (nextState != STATE_CURRENT){
 		if (nextState == STATE_MAIN_MENU){
@@ -93,20 +69,31 @@ void Application::ProcessEvents(){
 		}
 	}
 
+	while (fixedElapsed >= FIXED_TIMESTEP){
+		fixedElapsed -= FIXED_TIMESTEP;
+		Update(FIXED_TIMESTEP);
+	}
+	timeLeftOver = fixedElapsed;
+	
+	Render(elapsed);
+	return done;
+}
+
+void Application::ProcessEvents(){
+	SDL_Event event;
+	while (SDL_PollEvent(&event)){
+		if (event.type == SDL_QUIT || event.type == SDL_WINDOWEVENT_CLOSE)
+		{
+			done = true;
+		}
+		else{
+			currentState->ProcessEvents(event);
+		}
+	}
 }
 
 void Application::Update(float elapsed){
 	currentState->Update(elapsed);
-	/*
-	switch (state){ 
-		case STATE_MAIN_MENU:             
-			mainMenu.Update(elapsed);         
-			break;         
-		case STATE_GAME_LEVEL:             
-			gameLevel.Update(elapsed);         
-			break; 
-	}*/
-
 }
 
 void Application::Render(float elapsed){
