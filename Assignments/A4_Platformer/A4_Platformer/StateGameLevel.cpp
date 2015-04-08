@@ -47,18 +47,22 @@ void StateGameLevel::Init(){
 	SpriteBase blockSprite2 = SpriteBase(blocktype2, 0.0f / 1024.0f, 0.0f / 1024.0f, 70.0f / 1024.0f, 70.0f / 1024.0f, 2.0f, 0.0f);
 	SpriteBase playerSprite = SpriteBase(textureID2, 0.0f / 1024.0f, 0.0f / 1024.0f, 70.0f / 1024.0f, 70.0f / 1024.0f, 2.0f, 0.0f);
 	for (int i = -10; i < 11; i++){
-		platformEntities.push_back(new PlatformerEntity(blockSprite, i*blockSprite.getWidth(), -1.0f + blockSprite.getHeight() / 2));
+		platformBlocks.push_back(new PlatformerEntity(blockSprite, i*blockSprite.getWidth(), -1.0f + blockSprite.getHeight() / 2));
 	}
 	for (size_t i = 0; i < 14; i++){
-		platformEntities.push_back(new PlatformerEntity(blockSprite2, -1.333f + blockSprite2.getWidth() / 2, -1.0f + 1.5* blockSprite2.getHeight() + blockSprite2.getHeight()*i));
+		platformBlocks.push_back(new PlatformerEntity(blockSprite2, -1.333f + blockSprite2.getWidth() / 2, -1.0f + 1.5* blockSprite2.getHeight() + blockSprite2.getHeight()*i));
 	}
 	for (size_t i = 0; i < 14; i++){
-		platformEntities.push_back(new PlatformerEntity(blockSprite2, 1.333f - blockSprite2.getWidth() / 2, -1.0f + 1.5* blockSprite2.getHeight() + blockSprite2.getHeight()*i));
+		platformBlocks.push_back(new PlatformerEntity(blockSprite2, 1.333f - blockSprite2.getWidth() / 2, -1.0f + 1.5* blockSprite2.getHeight() + blockSprite2.getHeight()*i));
 	}
-	for (size_t i = 0; i < platformEntities.size(); i++){
-		platformEntities[i]->setStatic();
+	for (size_t i = 0; i < platformBlocks.size(); i++){
+		platformBlocks[i]->setStatic();
 	}
-	player = new PlatformerEntity(playerSprite, 0.0f, 0.0f);
+	player = new PlatformerEntity(playerSprite, -1.0f, 0.0f);
+
+	for(int i = 0; i < 1; i++){
+		platformEntities.push_back(new PlatformerEntity(playerSprite, i* 0.16f - 0.4, -0.6f));
+	}
 
 	Reset();
 }
@@ -76,10 +80,10 @@ void StateGameLevel::ProcessEvents(SDL_Event& event){
 				nextState = STATE_MAIN_MENU;
 			}
 		}
-		if (event.key.keysym.sym == SDLK_a){
+		if (event.key.keysym.scancode == SDL_SCANCODE_A){
 			player->Left();
 		}
-		else if (event.key.keysym.sym == SDLK_d){
+		else if (event.key.keysym.scancode == SDL_SCANCODE_D){
 			player->Right();
 		}
 	}
@@ -89,14 +93,6 @@ void StateGameLevel::ProcessEvents(SDL_Event& event){
 		}
 	}
 }
-
-/*void StateGameLevel::handleCollision(PlatformerEntity* entity, std::vector<PlatformerEntity*> &entities){
-	for (size_t i = 0; i < entities.size(); i++){
-		entity->isColliding(entities[i]->getRect());
-	}
-
-}*/
-
 
 void StateGameLevel::detectCollisionX(PlatformerEntity* entity, std::vector<PlatformerEntity*> &entities){
 	for (size_t i = 0; i < entities.size(); i++){
@@ -113,27 +109,46 @@ void StateGameLevel::detectCollisionY(PlatformerEntity* entity, std::vector<Plat
 }
 
 void StateGameLevel::Update(float elapsed){
+	for (int i = 0; i < platformBlocks.size(); i++){
+		platformBlocks[i]->ResetCollide();
+		platformBlocks[i]->UpdateY(elapsed);
+
+		platformBlocks[i]->UpdateX(elapsed);
+	}
+	
 	for (int i = 0; i < platformEntities.size(); i++){
 		platformEntities[i]->ResetCollide();
 		platformEntities[i]->UpdateY(elapsed);
-
+		detectCollisionY(platformEntities[i], platformBlocks);
 		platformEntities[i]->UpdateX(elapsed);
+		detectCollisionX(platformEntities[i], platformBlocks);
+		platformEntities[i]->HandleCollision(elapsed);
 	}
+
 	player->ResetCollide();
 	player->UpdateY(elapsed);
+	detectCollisionY(player, platformBlocks);
 	detectCollisionY(player, platformEntities);
+
 	player->UpdateX(elapsed);
+	detectCollisionX(player, platformBlocks);
 	detectCollisionX(player, platformEntities);
+
 	player->HandleCollision(elapsed);
 	
 }
 
 void StateGameLevel::Render(float elapsed){
 	//DrawText1(fontTexture, "Score: " +std::to_string(score), 0.075f, 0.0f, 0.5f, 0.9f, 1.0f, 0.0f, 0.0f, 0.5f);
+	for (int i = 0; i < platformBlocks.size(); i++){
+		platformBlocks[i]->Render(elapsed);
+	}
 	for (int i = 0; i < platformEntities.size(); i++){
 		platformEntities[i]->Render(elapsed);
 	}
 	player->Render(elapsed);
+
+
 }
 
 unsigned int StateGameLevel::getScore() const{

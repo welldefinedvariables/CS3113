@@ -95,5 +95,8 @@
     <ClInclude Include="PlatformerEntity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Draw.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -3,8 +3,8 @@
 PlatformerEntityBase::PlatformerEntityBase(float x, float y) :EntityBase(x, y), mass(0.0f), 
 isStatic(false), collidedTop(false), collidedBottom(false), collidedLeft(false), collidedRight(false)
 {
-	yAcceleration =0.0f;
-	xFriction = 2.0f;
+	yAcceleration = 0.0f;
+	xFriction = 1.5f;
 	yFriction = 0.0f;
 }
 
@@ -122,146 +122,17 @@ void PlatformerEntityBase::HandleCollision(float elapsed){
 	}
 }
 
-void PlatformerEntityBase::isColliding(const std::array<float, 4> &rect){
-	const std::array<float, 4> rect1 = this->getRect();
 
-	
-	if (isColliding(rect1, rect)){/*
-		float xDistanceSq = (rect1[0] * rect1[0]) + (rect[0] * rect[0]);
-		float yDistanceSq = (rect1[1] * rect1[1]) + (rect[1] * rect[1]);
-
-		if (xDistanceSq < yDistanceSq){
-			if (rect1[0] < rect[0]){
-				collidedRight = true;
-			}
-			else{
-				collidedLeft = true;
-			}
-		}
-		else {
-			if (rect1[1] < rect[1]){
-				collidedTop = true;
-			}
-			else{
-				collidedBottom = true;
-			}
-
-		}
-
-		float xOverlap = (rect1[2] + rect[2]) / 2 - (rect1[0] - rect[0]);
-		float yOverlap = (rect1[3] + rect[3]) / 2 - (rect1[1] - rect[1]);
-
-		if (collidedBottom){
-			y += yOverlap;
-		}
-		if (collidedTop){
-			y += yOverlap;
-		}
-		if (collidedLeft){
-			x += xOverlap;
-		}
-		if (collidedRight){
-			x += xOverlap;
-		}
-		*/
-		
-		float xOverlap = (rect1[2] + rect[2]) / 2 - (rect1[0] - rect[0]);
-		float yOverlap = (rect1[3] + rect[3]) / 2 - (rect1[1] - rect[1]);
-
-		if (abs(xOverlap) < abs(yOverlap)){
-			if (xVelocity < 0.0){
-				collidedLeft = true;
-				x += abs(xOverlap);
-			}
-			else{
-				collidedRight = true;
-				x -= abs(xOverlap);
-			}
-		}
-		else {
-			if (yVelocity < 0.0){
-				collidedBottom = true;
-				y += abs(yOverlap);
-			}
-			else{
-				collidedTop = true;
-				y -= abs(yOverlap);
-			}
-			
-		}
-		
-		
-		/*
-		float xOverlap = (rect1[2] + rect[2]) / 2 - abs(rect1[0] - rect[0]);
-		float yOverlap = (rect1[3] + rect[3]) / 2 - abs(rect1[1] - rect[1]);
-
-
-		if (xOverlap < yOverlap){
-			//Resolve x
-			if (xVelocity > 0.0){
-				//Move Left
-				collidedRight = true;
-				x -= xOverlap;
-			}
-			else  {
-				collidedLeft = true;
-				x += xOverlap;
-			}
-		}
-		else {
-			//Resolve y
-			if (yVelocity > 0.0){
-				//Move Down
-				collidedTop = true;
-				y -= yOverlap;
-			}
-			else {
-				collidedBottom = true;
-				y += yOverlap;
-			}
-
-		}
-		*/
-	}
-	
-	if (collidedBottom){
-		yAcceleration = 0.0;
-		yVelocity = 0.0;
-
-	}
-	if (collidedTop){
-		yAcceleration = 0.0;
-		yVelocity = 0.0;
-	}
-	if (collidedLeft){
-		//xAcceleration = 0.0;
-		xVelocity = 0.0;
-	}
-	if (collidedRight){
-		//xAcceleration = 0.0;
-		xVelocity = 0.0;
-	}
-
-	collidedBottom = false;
-	collidedLeft = false;
-	collidedRight = false;
-	collidedTop = false;
-
-}
-
-void PlatformerEntityBase::isColliding(float x, float y, float width, float height){
-	isColliding({ x, y, width, height});
-}
 
 void PlatformerEntityBase::setStatic(){
 	isStatic = true;
 }
 
 void PlatformerEntityBase::Left(){
-	xAcceleration = -3.0;
+	xAcceleration = -2.0;
 }
 void PlatformerEntityBase::Right(){
-	xAcceleration = 3.0;
+	xAcceleration = 2.0;
 }
 void PlatformerEntityBase::Up(){
 	if (collidedBottom){
@@ -274,6 +145,9 @@ void PlatformerEntityBase::Down(){
 
 void PlatformerEntityBase::StopLR(){
 	xAcceleration = 0.0f;
+	if (collidedBottom){
+		xVelocity = 0.0f;
+	}
 }
 
 

@@ -30,8 +30,7 @@ public:
 	void StopLR();
 
 	bool isColliding(const std::array<float, 4> &rect, const std::array<float, 4> &rect2);
-	void isColliding(const std::array<float, 4> &rect);
-	void isColliding(float x, float y, float width, float height);
+	
 
 	void disable();
 	void setStatic();

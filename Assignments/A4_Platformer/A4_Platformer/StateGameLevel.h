@@ -36,6 +36,7 @@ public:
 private:
 	unsigned int score;
 	std::vector<PlatformerEntity*> platformEntities;
+	std::vector<PlatformerEntity*> platformBlocks;
 	PlatformerEntity* player;
 	
 	SpriteBase* bSprite;
