@@ -1,21 +1,28 @@
 #pragma once
 #include <SDL_opengl.h>
 #include <SDL_image.h>
-#include "Draw.h"
+
 
 class SpriteBase{
 public:
-	SpriteBase(unsigned int textureID, float u, float v, float width, float height, float scale, float rotation);
+	SpriteBase(unsigned int textureID, float u, float v, float width, float height);
+	SpriteBase(unsigned int textureID, size_t index, size_t spriteCountX, size_t spriteCountY);
+
 	~SpriteBase();
 
-	virtual void Draw(float elapsed, float x, float y);
-	virtual void DrawRGBA(float elapsed, float x, float y, float r, float g, float b, float a);
-	virtual void DrawRGBA(float elapsed, float x, float y, float scaleX, float scaleY, float r, float g, float b, float a);
+	void Draw(float x, float y);
 
+	void setSpriteIndex(size_t index, size_t spriteCountX, size_t spriteCountY);
 
+	void scale(float scale) { this->scaleX = scale;  this->scaleY = scale; }
+	void scaleXY(float scaleX, float scaleY) { this->scaleX = scaleX; this->scaleY = scaleY; }
+	void rotate(float rotate) { this->rotation = rotate; }
+	void tintRGB(float r, float g, float b) { this->r = r; this->g = g; this->b = b; }
+	void tintRGBA(float r, float g, float b, float a) { this->r = r; this->g = g; this->b = b; this->a = a; }
 
 	float getWidth() const;
 	float getHeight() const;
+
 protected:
 	GLuint textureID;
 
@@ -25,6 +32,12 @@ protected:
 	float width;
 	float height;
 
+	float scaleX;
+	float scaleY;
 	float rotation;
-	float scale;
+
+	float r;
+	float g;
+	float b;
+	float a;
 };

@@ -20,7 +20,9 @@ void Enemy::Update(float elapsed){
 
 void Enemy::Render(float elapsed){
 	if (enabled){
-		sprite.DrawRGBA(elapsed, x, y, (4.0 - abs(xVelocity)) / 3.0, 1.0, 0.5, 0.5, 0.5, 1.0);
+		sprite.scaleXY((4.0 - abs(xVelocity)) / 3.0, 1.0);
+		sprite.tintRGBA(0.5, 0.5, 0.5, 1.0);
+		sprite.Draw(x, y);
 	}
 }
 

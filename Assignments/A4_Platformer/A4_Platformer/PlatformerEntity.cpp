@@ -18,7 +18,7 @@ void PlatformerEntity::Update(float elapsed){
 
 void PlatformerEntity::Render(float elapsed){
 	if (enabled){
-		sprite.DrawRGBA(elapsed, x, y, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0);
+		sprite.Draw(x, y);
 	}
 }
 

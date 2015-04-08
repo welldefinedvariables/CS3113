@@ -114,11 +114,11 @@ void PlatformerEntityBase::HandleCollision(float elapsed){
 	}
 	if (collidedLeft){
 		xAcceleration = 0.0;
-		xVelocity = 0.0;
+		//xVelocity = 0.0;
 	}
 	if (collidedRight){
 		xAcceleration = 0.0;
-		xVelocity = 0.0;
+		//xVelocity = 0.0;
 	}
 }
 

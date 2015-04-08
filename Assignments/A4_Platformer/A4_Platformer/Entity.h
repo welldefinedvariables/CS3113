@@ -41,7 +41,7 @@ void Entity<T>::Update(float elapsed){
 template <typename T>
 void Entity<T>::Render(float elapsed){
 	if (enabled){
-		sprite.Draw(elapsed, x, y);
+		sprite.Draw(x, y);
 	}
 }
 

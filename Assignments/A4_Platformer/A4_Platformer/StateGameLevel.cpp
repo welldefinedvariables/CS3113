@@ -43,9 +43,14 @@ void StateGameLevel::Init(){
 	unsigned int blocktype1 = LoadTexture("slice03_03.png");
 	unsigned int blocktype2 = LoadTexture("slice33_33.png");
 
-	SpriteBase blockSprite = SpriteBase(blocktype1, 0.0f / 1024.0f, 0.0f / 1024.0f, 70.0f / 1024.0f, 70.0f / 1024.0f, 2.0f, 0.0f);
-	SpriteBase blockSprite2 = SpriteBase(blocktype2, 0.0f / 1024.0f, 0.0f / 1024.0f, 70.0f / 1024.0f, 70.0f / 1024.0f, 2.0f, 0.0f);
-	SpriteBase playerSprite = SpriteBase(textureID2, 0.0f / 1024.0f, 0.0f / 1024.0f, 70.0f / 1024.0f, 70.0f / 1024.0f, 2.0f, 0.0f);
+	SpriteBase blockSprite = SpriteBase(blocktype1, 0.0f / 1024.0f, 0.0f / 1024.0f, 70.0f / 1024.0f, 70.0f / 1024.0f);
+	SpriteBase blockSprite2 = SpriteBase(blocktype2, 0.0f / 1024.0f, 0.0f / 1024.0f, 70.0f / 1024.0f, 70.0f / 1024.0f);
+	SpriteBase playerSprite = SpriteBase(textureID2, 0.0f / 1024.0f, 0.0f / 1024.0f, 70.0f / 1024.0f, 70.0f / 1024.0f);
+	
+	blockSprite.scale(1.5f);
+	blockSprite2.scale(1.5f);
+    //playerSprite.scale(1.5f);
+
 	for (int i = -10; i < 11; i++){
 		platformBlocks.push_back(new PlatformerEntity(blockSprite, i*blockSprite.getWidth(), -1.0f + blockSprite.getHeight() / 2));
 	}

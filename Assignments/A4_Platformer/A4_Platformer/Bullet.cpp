@@ -11,7 +11,8 @@ void Bullet::Update(float elapsed){
 
 void Bullet::Render(float elapsed){
 	if (enabled){
-		sprite.DrawRGBA(elapsed, x, y, 1.0, 1.0, 1.0, 0.5, 0.5, 1.0);
+		sprite.tintRGBA(1.0, 0.5, 0.5, 1.0);
+		sprite.Draw(x, y);
 	}
 }
 

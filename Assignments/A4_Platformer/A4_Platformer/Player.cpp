@@ -23,7 +23,9 @@ void Player::Update(float elapsed){
 
 void Player::Render(float elapsed){
 	if (enabled){
-		sprite.DrawRGBA(elapsed, x, y, (16.0 - abs(xAcceleration)) / 12.0, 1.0, 1.0, 0.5, 0.5, 1.0);
+		sprite.scaleXY( ((16.0 - abs(xAcceleration)) / 12.0f), 1.0f);
+		sprite.tintRGBA(1.0, 0.5, 0.5, 1.0);
+		sprite.Draw(x, y);
 		if (bullet != nullptr){
 			bullet->Render(elapsed);
 		}
