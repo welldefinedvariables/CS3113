@@ -5,8 +5,6 @@
 
 class DrawHelper{
 public:
-	//float x;
-	//float y;
 	float scaleX;
 	float scaleY;
 	float rotation;
@@ -32,6 +30,7 @@ private:
 
 };
 
+/*
 void Draw(const DrawHelper &dh, const std::array<float, 4> rect, int spriteTexture, float u, float v){
 	// our regular sprite drawing
 	glEnable(GL_TEXTURE_2D);
@@ -81,7 +80,8 @@ void Draw(const DrawHelper &dh, const std::array<float, 4> rect, int spriteTextu
 	glDisable(GL_TEXTURE_2D);
 }
 
-void DrawSpriteSheetSprite(const DrawHelper &dh, const std::array<float, 4> rect, int spriteTexture, int index, int spriteCountX, int
+
+void DrawSpriteSheetSprite(const DrawSpriteHelper &dh, const std::array<float, 4> rect, int spriteTexture, int index, int spriteCountX, int
 	spriteCountY) {
 	
 	// our regular sprite drawing
@@ -137,3 +137,4 @@ void DrawSpriteSheetSprite(const DrawHelper &dh, const std::array<float, 4> rect
 	glDisable(GL_TEXTURE_2D);
 
 }
+*/
