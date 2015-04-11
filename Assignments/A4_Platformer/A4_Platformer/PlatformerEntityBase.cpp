@@ -58,17 +58,18 @@ void PlatformerEntityBase::UpdateY(float elapsed){
 }
 
 bool PlatformerEntityBase::isColliding(const std::array<float, 4> &rect, const std::array<float, 4> &rect2){
-	return rect[0] < (rect2[0] + rect2[2]) &&
-		(rect[0] + rect[2]) > rect2[0] &&
-		rect[1] < (rect2[1] + rect2[3]) &&
-		(rect[1] + rect[3]) > rect2[1];
+	return
+		(rect[0] - rect[2]/2) < (rect2[0] + rect2[2]/2) &&
+		(rect[0] + rect[2]/2) > (rect2[0] - rect2[2]/2) &&
+		(rect[1] - rect[3]/2) < (rect2[1] + rect2[3]/2) &&
+		(rect[1] + rect[3]/2) > (rect2[1] - rect2[3]/2);
 }
 
 void PlatformerEntityBase::CollideX(const std::array<float, 4> &rect2){
 	const std::array<float, 4> rect1 = this->getRect();
 	if (isColliding(rect1, rect2)){
 		float xDistance = fabs(rect1[0] - rect2[0]);
-		float xOverlap = fabs(xDistance - (rect1[2] + rect2[2]) / 2);
+		float xOverlap = fabs(xDistance - (rect1[2] + rect2[2]) / 2) + 0.0001f;
 		if (rect1[0] < rect2[0]){
 			collidedRight = true;
 			x -= xOverlap;
@@ -84,7 +85,7 @@ void PlatformerEntityBase::CollideY(const std::array<float, 4> &rect2){
 	const std::array<float, 4> rect1 = this->getRect();
 	if (isColliding(rect1, rect2)){
 		float yDistance = fabs(rect1[1] - rect2[1]);
-		float yOverlap = fabs(yDistance - (rect1[3] + rect2[3]) / 2);
+		float yOverlap = fabs(yDistance - (rect1[3] + rect2[3]) / 2) + 0.0001f;
 		if (rect1[1] < rect2[1]){
 			collidedTop = true;
 			y -= yOverlap;

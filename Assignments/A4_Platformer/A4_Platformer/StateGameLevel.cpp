@@ -35,23 +35,29 @@ StateGameLevel::~StateGameLevel(){}
 
 void StateGameLevel::Init(){
 	StateBase::Init();
-	unsigned int textureID = LoadTexture("sheet.png");
+	//unsigned int textureID = LoadTexture("sheet.png");
+
 
 	fontTexture = LoadTexture("font2.png");
 
+	unsigned int yetiss = LoadTexture("sprites2.png");
 	unsigned int textureID2 = LoadTexture("sprites.png");
 	unsigned int blocktype1 = LoadTexture("slice03_03.png");
 	unsigned int blocktype2 = LoadTexture("slice33_33.png");
 
-	SpriteBase blockSprite = SpriteBase(blocktype1, 0.0f / 1024.0f, 0.0f / 1024.0f, 70.0f / 1024.0f, 70.0f / 1024.0f);
-	SpriteBase blockSprite2 = SpriteBase(blocktype2, 0.0f / 1024.0f, 0.0f / 1024.0f, 70.0f / 1024.0f, 70.0f / 1024.0f);
-	SpriteBase playerSprite = SpriteBase(textureID2, 0.0f / 1024.0f, 0.0f / 1024.0f, 70.0f / 1024.0f, 70.0f / 1024.0f);
+	SpriteBase blockSprite = SpriteBase(blocktype1, 0.0f, 0.0f, 1.0f, 1.0f );
+	SpriteBase blockSprite2 = SpriteBase(blocktype2, 0.0f, 0.0f, 1.0f, 1.0f);
+	SpriteBase playerSprite = SpriteBase(textureID2, 0.0f, 0.0f, 1.0f, 1.0f);
+	SpriteBase yetisprite = SpriteBase(yetiss, 47.0f/257.0, 0.0f/252.0f, 70.0f/257.0, 140.0f/252.0);
 	
-	blockSprite.scale(1.5f);
-	blockSprite2.scale(1.5f);
-    //playerSprite.scale(1.5f);
+	blockSprite.scaleXY(2.66, .050f);
+	blockSprite2.scale(0.13f);
+    playerSprite.scale(1.125f);
 
-	for (int i = -10; i < 11; i++){
+	platformBlocks.push_back(new PlatformerEntity(blockSprite, 0.0, -1.0 + blockSprite.getHeight()));
+
+	/*
+	for (int i = -13; i < 14; i++){
 		platformBlocks.push_back(new PlatformerEntity(blockSprite, i*blockSprite.getWidth(), -1.0f + blockSprite.getHeight() / 2));
 	}
 	for (size_t i = 0; i < 14; i++){
@@ -59,16 +65,18 @@ void StateGameLevel::Init(){
 	}
 	for (size_t i = 0; i < 14; i++){
 		platformBlocks.push_back(new PlatformerEntity(blockSprite2, 1.333f - blockSprite2.getWidth() / 2, -1.0f + 1.5* blockSprite2.getHeight() + blockSprite2.getHeight()*i));
-	}
+	}*/
 	for (size_t i = 0; i < platformBlocks.size(); i++){
 		platformBlocks[i]->setStatic();
 	}
-	player = new PlatformerEntity(playerSprite, -1.0f, 0.0f);
+	
+	player = new PlatformerEntity(yetisprite, 0.0f, 0.0f);
+	//player->setStatic();
 
 	for(int i = 0; i < 1; i++){
-		platformEntities.push_back(new PlatformerEntity(playerSprite, i* 0.16f - 0.4, -0.6f));
+		//platformEntities.push_back(new PlatformerEntity(blockSprite2, i* 0.16f - 0.4, -0.6f));
 	}
-
+	
 	Reset();
 }
 

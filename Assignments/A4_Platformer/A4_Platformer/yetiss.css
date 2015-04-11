@@ -1,0 +1,155 @@
+.sprite {
+    background-image: url(spritesheet.png);
+    background-repeat: no-repeat;
+    display: block;
+}
+
+.sprite-attack1_0 {
+    width: 224px;
+    height: 191px;
+    background-position: -5px -5px;
+}
+
+.sprite-attack1_1 {
+    width: 224px;
+    height: 191px;
+    background-position: -239px -5px;
+}
+
+.sprite-attack1_2 {
+    width: 224px;
+    height: 191px;
+    background-position: -473px -5px;
+}
+
+.sprite-attack1_3 {
+    width: 224px;
+    height: 191px;
+    background-position: -5px -206px;
+}
+
+.sprite-attack1_4 {
+    width: 224px;
+    height: 191px;
+    background-position: -239px -206px;
+}
+
+.sprite-attack1_5 {
+    width: 224px;
+    height: 191px;
+    background-position: -473px -206px;
+}
+
+.sprite-attack1_6 {
+    width: 224px;
+    height: 191px;
+    background-position: -5px -407px;
+}
+
+.sprite-attack1_7 {
+    width: 224px;
+    height: 191px;
+    background-position: -239px -407px;
+}
+
+.sprite-attack1_8 {
+    width: 224px;
+    height: 191px;
+    background-position: -473px -407px;
+}
+
+.sprite-die1_0 {
+    width: 190px;
+    height: 108px;
+    background-position: -5px -608px;
+}
+
+.sprite-die1_1 {
+    width: 190px;
+    height: 108px;
+    background-position: -205px -608px;
+}
+
+.sprite-die1_2 {
+    width: 190px;
+    height: 108px;
+    background-position: -405px -608px;
+}
+
+.sprite-die1_3 {
+    width: 190px;
+    height: 108px;
+    background-position: -605px -608px;
+}
+
+.sprite-die1_4 {
+    width: 190px;
+    height: 108px;
+    background-position: -5px -726px;
+}
+
+.sprite-die1_5 {
+    width: 190px;
+    height: 108px;
+    background-position: -205px -726px;
+}
+
+.sprite-die1_6 {
+    width: 190px;
+    height: 108px;
+    background-position: -405px -726px;
+}
+
+.sprite-hit1_0 {
+    width: 105px;
+    height: 117px;
+    background-position: -707px -5px;
+}
+
+.sprite-hit1_1 {
+    width: 105px;
+    height: 117px;
+    background-position: -707px -132px;
+}
+
+.sprite-move_0 {
+    width: 121px;
+    height: 111px;
+    background-position: -707px -259px;
+}
+
+.sprite-move_1 {
+    width: 121px;
+    height: 111px;
+    background-position: -707px -380px;
+}
+
+.sprite-move_2 {
+    width: 121px;
+    height: 111px;
+    background-position: -605px -726px;
+}
+
+.sprite-move_3 {
+    width: 121px;
+    height: 111px;
+    background-position: -822px -5px;
+}
+
+.sprite-stand_0 {
+    width: 100px;
+    height: 107px;
+    background-position: -822px -126px;
+}
+
+.sprite-stand_1 {
+    width: 100px;
+    height: 107px;
+    background-position: -838px -243px;
+}
+
+.sprite-stand_2 {
+    width: 100px;
+    height: 107px;
+    background-position: -838px -360px;
+}

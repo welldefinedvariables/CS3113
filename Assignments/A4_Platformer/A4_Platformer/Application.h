@@ -11,9 +11,12 @@
 #include "StateMainMenu.h"
 #include "StateGameLevel.h"
 #include "StateGameOver.h"
+#include "Utility.h"
 
 #define FIXED_TIMESTEP 0.01666666f
 #define MAX_TIMESTEPS 6
+
+using namespace Utility;
 
 using std::vector;
 

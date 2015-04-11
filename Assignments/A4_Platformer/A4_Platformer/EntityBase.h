@@ -1,5 +1,8 @@
 #pragma once
 #include <array>
+#include "Utility.h"
+
+using namespace Utility;
 
 class EntityBase
 {
@@ -19,6 +22,9 @@ protected:
 	float x;
 	float y;
 
+	float width;
+	float height;
+
 	float xVelocity;
 	float yVelocity;
 
@@ -30,3 +36,4 @@ protected:
 
 	bool enabled;
 };
+

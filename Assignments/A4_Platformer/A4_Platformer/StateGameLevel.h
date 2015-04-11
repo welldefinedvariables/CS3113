@@ -7,7 +7,6 @@
 
 #include "SpriteBase.h"
 
-#include "Player.h"
 #include "Enemy.h"
 #include "Bullet.h"
 

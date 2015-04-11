@@ -1,0 +1,59 @@
+.sprite {
+    background-image: url(spritesheet.png);
+    background-repeat: no-repeat;
+    display: block;
+}
+
+.sprite-coins {
+    width: 47px;
+    height: 47px;
+    background-position: 0 0;
+}
+
+.sprite-doorClosed {
+    width: 70px;
+    height: 140px;
+    background-position: -47px 0;
+}
+
+.sprite-doorOpen {
+    width: 70px;
+    height: 140px;
+    background-position: -117px 0;
+}
+
+.sprite-spinner {
+    width: 63px;
+    height: 62px;
+    background-position: 0 -140px;
+}
+
+.sprite-spinner_dead {
+    width: 63px;
+    height: 62px;
+    background-position: -63px -140px;
+}
+
+.sprite-spinner_hit {
+    width: 61px;
+    height: 61px;
+    background-position: -126px -140px;
+}
+
+.sprite-spinner_spin {
+    width: 61px;
+    height: 61px;
+    background-position: -187px 0;
+}
+
+.sprite-tundra {
+    width: 70px;
+    height: 70px;
+    background-position: -187px -61px;
+}
+
+.sprite-tundraCenter {
+    width: 70px;
+    height: 70px;
+    background-position: -187px -131px;
+}

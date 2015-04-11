@@ -3,6 +3,7 @@
 
 #include "EntityBase.h"
 
+
 template <typename T>
 class Entity : public EntityBase
 {

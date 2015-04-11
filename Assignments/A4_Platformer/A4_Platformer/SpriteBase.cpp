@@ -29,10 +29,13 @@ void SpriteBase::Draw(float x, float y){
 	glRotatef(rotation, 0.0, 0.0, 1.0);
 	glScalef(scaleX, scaleY, 1.0);
 
-	GLfloat quad[] = { -width / 2 * scaleX, height / 2 * scaleY,
-		-width / 2 * scaleX, -height / 2 * scaleY,
-		width / 2 * scaleX, -height / 2 * scaleY,
-		width / 2 * scaleX, height / 2 * scaleY };
+	float w = width;
+	float h = height;
+
+	GLfloat quad[] = { -w / 2, h / 2,
+		-w / 2, -h / 2,
+		w / 2, -h / 2,
+		w / 2, h / 2 };
 	glVertexPointer(2, GL_FLOAT, 0, quad);
 	glEnableClientState(GL_VERTEX_ARRAY);
 
@@ -43,7 +46,6 @@ void SpriteBase::Draw(float x, float y){
 
 	glTexCoordPointer(2, GL_FLOAT, 0, quadUVs);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-
 
 	glColor4f(r, g, b, a);
 	glEnableClientState(GL_COLOR4_BIT_PGI);
@@ -70,8 +72,10 @@ void SpriteBase::setSpriteIndex(size_t index, size_t spriteCountX, size_t sprite
 }
 
 float SpriteBase::getWidth() const{
-	return width*scaleX;
+	//Coordinates coordinates = convertOpenGLToPixels(width * scaleX, height * scaleY);
+	return width * scaleX;
 }
 float SpriteBase::getHeight() const{
-	return height*scaleY;
+	//Coordinates coordinates = convertOpenGLToPixels(width * scaleX, height * scaleY);
+	return height * scaleY;
 }

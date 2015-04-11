@@ -73,13 +73,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
-    <ClCompile Include="Bullet.cpp" />
-    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EntityBase.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PlatformerEntity.cpp" />
     <ClCompile Include="PlatformerEntityBase.cpp" />
-    <ClCompile Include="Player.cpp" />
     <ClCompile Include="StateBase.cpp" />
     <ClCompile Include="StateGameLevel.cpp" />
     <ClCompile Include="StateGameOver.cpp" />
@@ -87,20 +84,18 @@
     <ClCompile Include="SpriteBase.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Animation.h" />
     <ClInclude Include="Application.h" />
-    <ClInclude Include="Bullet.h" />
-    <ClInclude Include="Draw.h" />
-    <ClInclude Include="Enemy.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityBase.h" />
     <ClInclude Include="PlatformerEntity.h" />
     <ClInclude Include="PlatformerEntityBase.h" />
-    <ClInclude Include="Player.h" />
     <ClInclude Include="StateGameLevel.h" />
     <ClInclude Include="SpriteBase.h" />
     <ClInclude Include="StateBase.h" />
     <ClInclude Include="StateGameOver.h" />
     <ClInclude Include="StateMainMenu.h" />
+    <ClInclude Include="Utility.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

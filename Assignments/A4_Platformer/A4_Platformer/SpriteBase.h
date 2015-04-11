@@ -1,7 +1,9 @@
 #pragma once
 #include <SDL_opengl.h>
 #include <SDL_image.h>
+#include "Utility.h"
 
+using namespace Utility;
 
 class SpriteBase{
 public:

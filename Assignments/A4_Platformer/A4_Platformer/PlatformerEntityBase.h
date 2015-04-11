@@ -14,8 +14,8 @@ public:
 	void Update(float elapsed);
 	void UpdateX(float elapsed);
 	void UpdateY(float elapsed);
-	void CollideX(const std::array<float, 4> &rect2);
-	void CollideY(const std::array<float, 4> &rect2);
+	bool CollideX(const std::array<float, 4> &rect2);
+	bool CollideY(const std::array<float, 4> &rect2);
 	void ResetCollide();
 	void HandleCollision(float elapsed);
 

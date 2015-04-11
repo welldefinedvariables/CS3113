@@ -22,17 +22,17 @@ Application::~Application(){
 
 void Application::Init(){
 	SDL_Init(SDL_INIT_VIDEO);
-	displayWindow = SDL_CreateWindow("My_Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_OPENGL);
+	displayWindow = SDL_CreateWindow("My_Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, RESOLUTION_X, RESOLUTION_Y, SDL_WINDOW_OPENGL);
 
 	if (displayWindow){
 		SDL_GLContext context = SDL_GL_CreateContext(displayWindow);
 		SDL_GL_MakeCurrent(displayWindow, context);
 	}
 	
-	glViewport(0, 0, 800, 600);
+	glViewport(0, 0, RESOLUTION_X, RESOLUTION_Y);
 	glMatrixMode(GL_PROJECTION);
 	glOrtho(-1.33, 1.33, -1.0, 1.0, -1.0, 1.0);
-	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+	glClearColor(0.5f, 0.8f, 1.0f, 1.0f);
 
 
 }
