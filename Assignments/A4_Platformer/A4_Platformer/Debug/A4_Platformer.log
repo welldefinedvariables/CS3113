@@ -1,14 +1,21 @@
-﻿Build started 4/9/2015 5:46:05 PM.
-     1>Project "C:\Users\George\Documents\GitHub\CS3113\Assignments\A4_Platformer\A4_Platformer\A4_Platformer.vcxproj" on node 2 (Build target(s)).
+﻿Build started 4/12/2015 6:45:17 PM.
+     1>Project "D:\Users\George\Documents\GitHub\CS3113\Assignments\A4_Platformer\A4_Platformer\A4_Platformer.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\SDL2\include /IC:\SDL2_image\include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt SpriteBase.cpp
-         SpriteBase.cpp
-     1>c:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\spritebase.cpp(14): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\spritebase.cpp(15): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\spritebase.cpp(73): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\spritebase.cpp(74): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\SDL2\include /IC:\SDL2_image\include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt StateGameLevel.cpp
+         StateGameLevel.cpp
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\entitybase.h(20): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\entity.h(24): warning C4812: obsolete declaration style: please use 'Entity<T>::Entity' instead
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\entity.h(32): warning C4812: obsolete declaration style: please use 'Entity<T>::~Entity' instead
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(12): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(51): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(53): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(57): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(125): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(132): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(156): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(159): warning C4018: '<' : signed/unsigned mismatch
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\George\Documents\GitHub\CS3113\Assignments\A4_Platformer\Debug\A4_Platformer.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\SDL2\lib\x86 /LIBPATH:C:\SDL2_image\lib\x86 SDL2.lib SDL2main.lib SDL2_image.lib OpenGL32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\George\Documents\GitHub\CS3113\Assignments\A4_Platformer\Debug\A4_Platformer.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\George\Documents\GitHub\CS3113\Assignments\A4_Platformer\Debug\A4_Platformer.lib" /MACHINE:X86 Debug\Application.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Users\George\Documents\GitHub\CS3113\Assignments\A4_Platformer\Debug\A4_Platformer.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\SDL2\lib\x86 /LIBPATH:C:\SDL2_image\lib\x86 SDL2.lib SDL2main.lib SDL2_image.lib OpenGL32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Users\George\Documents\GitHub\CS3113\Assignments\A4_Platformer\Debug\A4_Platformer.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Users\George\Documents\GitHub\CS3113\Assignments\A4_Platformer\Debug\A4_Platformer.lib" /MACHINE:X86 Debug\Application.obj
          Debug\EntityBase.obj
          Debug\main.obj
          Debug\PlatformerEntity.obj
@@ -18,9 +25,9 @@
          Debug\StateGameOver.obj
          Debug\StateMainMenu.obj
          Debug\SpriteBase.obj
-         A4_Platformer.vcxproj -> C:\Users\George\Documents\GitHub\CS3113\Assignments\A4_Platformer\Debug\A4_Platformer.exe
-     1>Done Building Project "C:\Users\George\Documents\GitHub\CS3113\Assignments\A4_Platformer\A4_Platformer\A4_Platformer.vcxproj" (Build target(s)).
+         A4_Platformer.vcxproj -> D:\Users\George\Documents\GitHub\CS3113\Assignments\A4_Platformer\Debug\A4_Platformer.exe
+     1>Done Building Project "D:\Users\George\Documents\GitHub\CS3113\Assignments\A4_Platformer\A4_Platformer\A4_Platformer.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.04
+Time Elapsed 00:00:01.95

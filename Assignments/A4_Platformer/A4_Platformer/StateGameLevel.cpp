@@ -35,12 +35,12 @@ StateGameLevel::~StateGameLevel(){}
 
 void StateGameLevel::Init(){
 	StateBase::Init();
-	//unsigned int textureID = LoadTexture("sheet.png");
-
 
 	fontTexture = LoadTexture("font2.png");
 
-	unsigned int yetiss = LoadTexture("sprites2.png");
+	unsigned int yetiss = LoadTexture("yetiss.png");
+	unsigned int charss = LoadTexture("sprites.png");
+	unsigned int blockss = LoadTexture("sprites2.png");
 	unsigned int textureID2 = LoadTexture("sprites.png");
 	unsigned int blocktype1 = LoadTexture("slice03_03.png");
 	unsigned int blocktype2 = LoadTexture("slice33_33.png");
