@@ -5,7 +5,7 @@
 #include "EntityBase.h"
 #include "Entity.h"
 
-#include "SpriteBase.h"
+#include "AnimatedSprite.h"
 
 #include "Enemy.h"
 #include "Bullet.h"
@@ -34,9 +34,6 @@ public:
 	void Reset();
 private:
 	unsigned int score;
-	std::vector<PlatformerEntity*> platformEntities;
-	std::vector<PlatformerEntity*> platformBlocks;
-	PlatformerEntity* player;
 	
-	SpriteBase* bSprite;
+	AnimatedSprite *test;
 };

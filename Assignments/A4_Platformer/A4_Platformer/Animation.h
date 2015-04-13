@@ -1,7 +1,6 @@
 #pragma once
-
-#include "SpriteBase.h"
 #include <vector>
+#include "SpriteBase.h"
 
 using std::vector;
 
@@ -14,22 +13,31 @@ struct Frame{
 
 class Animation : public SpriteBase{
 public:
-	Animation(unsigned int textureID, float sheetWidth, float sheetHeight) :SpriteBase(textureID, 0.0f, 0.0f, 1.0f, 1.0f){}
-	~Animation(){}
+	Animation(unsigned int textureID, float sheetWidth, float sheetHeight);
+	~Animation();
+
+	void Draw(float elapsed, float x, float y);
 
 	void addFrame(float u, float v, float width, float height){ frames.push_back({ u, v, width, height }); }
-	void addFramePixels(float u, float v, float width, float height){ frames.push_back({u/sheetWidth, v/sheetHeight, width/sheetWidth, height/sheetHeight}); }
-	void Draw(size_t frame, float x, float y){
-		this->u = frames[frame].u;
-		this->v = frames[frame].v;
-		this->width = frames[frame].width;
-		this->height = frames[frame].height;
-		SpriteBase::Draw(x, y);
+	void addFramePixels(float u, float v, float width, float height){ frames.push_back({ u / sheetWidth, v / sheetHeight, width / sheetWidth, height / sheetHeight }); }
+	void setFramesPerSecond(float fps){ this->framesPerSecond = fps; }
+	void setFrame(size_t index){
+		this->u = frames[index].u;
+		this->v = frames[index].v;
+		this->width = frames[index].width;
+		this->height = frames[index].height;
 	}
+	void animate(){ done = false; currentIndex = 0; }
 
 protected:
+	vector<Frame> frames;
+	size_t currentIndex;
+
 	float sheetWidth;
 	float sheetHeight;
 
-	vector<Frame> frames;
+	float animationElapsed;
+	float framesPerSecond;
+
+	float done;
 };

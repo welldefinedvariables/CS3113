@@ -2,12 +2,12 @@
 #include <array>
 
 #include "PlatformerEntityBase.h"
-#include "SpriteBase.h"
+#include "AnimatedSprite.h"
 
 class PlatformerEntity : public PlatformerEntityBase
 {
 public:
-	PlatformerEntity(SpriteBase &sprite, float x, float y);
+	PlatformerEntity(AnimatedSprite &sprite, float x, float y);
 	~PlatformerEntity();
 
 	void Update(float elapsed);
@@ -16,6 +16,6 @@ public:
 
 
 protected:
-	SpriteBase sprite;
+	AnimatedSprite sprite;
 };
 

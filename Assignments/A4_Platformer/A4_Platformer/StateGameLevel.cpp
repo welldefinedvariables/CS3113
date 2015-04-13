@@ -35,49 +35,116 @@ StateGameLevel::~StateGameLevel(){}
 
 void StateGameLevel::Init(){
 	StateBase::Init();
-
+	test = nullptr;
+	score = 0;
 	fontTexture = LoadTexture("font2.png");
 
-	unsigned int yetiss = LoadTexture("yetiss.png");
 	unsigned int charss = LoadTexture("sprites.png");
 	unsigned int blockss = LoadTexture("sprites2.png");
-	unsigned int textureID2 = LoadTexture("sprites.png");
-	unsigned int blocktype1 = LoadTexture("slice03_03.png");
-	unsigned int blocktype2 = LoadTexture("slice33_33.png");
+	unsigned int yetiss = LoadTexture("yetiss.png");
 
-	SpriteBase blockSprite = SpriteBase(blocktype1, 0.0f, 0.0f, 1.0f, 1.0f );
-	SpriteBase blockSprite2 = SpriteBase(blocktype2, 0.0f, 0.0f, 1.0f, 1.0f);
-	SpriteBase playerSprite = SpriteBase(textureID2, 0.0f, 0.0f, 1.0f, 1.0f);
-	SpriteBase yetisprite = SpriteBase(yetiss, 47.0f/257.0, 0.0f/252.0f, 70.0f/257.0, 140.0f/252.0);
+	AnimatedSprite *coin = new AnimatedSprite(blockss, 384.0, 384.0);
+	coin->addFramePixels(5.0, 5.0, 47.0, 47.0);
+	coin->addSequence({ 0 });
+	coin->scale(0.33);
+
+	AnimatedSprite *snowblock = new AnimatedSprite(blockss, 384.0, 384.0);
+	snowblock->addFramePixels(5.0, 155.0, 70.0, 70.0);
+	snowblock->scaleXY(0.5, 10.0);
+	snowblock->addSequence({ 0 });
 	
-	blockSprite.scaleXY(2.66, .050f);
-	blockSprite2.scale(0.13f);
-    playerSprite.scale(1.125f);
+	AnimatedSprite *snowground = new AnimatedSprite(blockss, 384.0, 384.0);
+	snowground->addFramePixels(165.0, 155.0, 70.0, 70.0);
+	snowground->scaleXY(20, 0.5);
+	snowground->addSequence({ 0 });
 
-	platformBlocks.push_back(new PlatformerEntity(blockSprite, 0.0, -1.0 + blockSprite.getHeight()));
+	AnimatedSprite *door = new AnimatedSprite(blockss, 384.0, 384.0);
+	door->addFramePixels(62.0, 5.0, 70.0, 140.0);
+	door->addFramePixels(142.0, 5.0, 70.0, 140.0);
+	door->addSequence({ 0 });
+	door->addSequence({ 0,1 });
+	door->setFramesPerSecond(1.0);
+	door->scale(0.6);
 
-	/*
-	for (int i = -13; i < 14; i++){
-		platformBlocks.push_back(new PlatformerEntity(blockSprite, i*blockSprite.getWidth(), -1.0f + blockSprite.getHeight() / 2));
-	}
-	for (size_t i = 0; i < 14; i++){
-		platformBlocks.push_back(new PlatformerEntity(blockSprite2, -1.333f + blockSprite2.getWidth() / 2, -1.0f + 1.5* blockSprite2.getHeight() + blockSprite2.getHeight()*i));
-	}
-	for (size_t i = 0; i < 14; i++){
-		platformBlocks.push_back(new PlatformerEntity(blockSprite2, 1.333f - blockSprite2.getWidth() / 2, -1.0f + 1.5* blockSprite2.getHeight() + blockSprite2.getHeight()*i));
-	}*/
-	for (size_t i = 0; i < platformBlocks.size(); i++){
-		platformBlocks[i]->setStatic();
-	}
+	AnimatedSprite *mine = new AnimatedSprite(blockss, 384.0, 384.0);
+
+	mine->addFramePixels(222.0, 5.0, 62.0, 62.0);
+	mine->addFramePixels(222.0, 77.0, 62.0, 62.0);
+	mine->addFramePixels(245.0, 149.0, 62.0, 62.0);
+	mine->addFramePixels(245.0, 221.0, 62.0, 62.0);
+	mine->addSequence({ 0, 1 });
+	mine->addSequence({ 2, 3 });
+	mine->setFramesPerSecond(5.0);
+	mine->scale(0.6);
+
+
+	AnimatedSprite *kid = new AnimatedSprite(charss, 256.0, 256.0);
+	kid->addFramePixels(64.0, 0.0, 16.0, 16.0);
+	kid->addFramePixels(48.0, 16.0, 16.0, 16.0);
+	kid->addFramePixels(64.0, 16.0, 16.0, 16.0);
+	kid->addFramePixels(80.0, 16.0, 16.0, 16.0);
+	kid->addFramePixels(48.0, 32.0, 16.0, 16.0);
+	kid->addFramePixels(64.0, 32.0, 16.0, 16.0);
+	kid->addFramePixels(80.0, 32.0, 16.0, 16.0);
+
+	kid->addSequence({ 0 });
+	kid->addSequence({ 1, 2, 3 });
+	kid->addSequence({ 4, 5, 6 });
+
+	kid->scale(2.5);
+	kid->setFramesPerSecond(8.0);
+
+	kid->animate(0);
+	kid->enableLooping();
+
+	AnimatedSprite *yeti = new AnimatedSprite(yetiss, 1024.0f, 1024.0f);
+	yeti->scale(2.0);
+	//stand
+	yeti->addFramePixels(822.0, 126.0, 100.0, 107.0);
+	yeti->addFramePixels(838.0, 243.0, 100.0, 107.0);
+	yeti->addFramePixels(838.0, 360.0, 100.0, 107.0);
+
+	//move
+	yeti->addFramePixels(707.0, 259.0, 121.0, 111.0);
+	yeti->addFramePixels(707.0, 380.0, 121.0, 111.0);
+	yeti->addFramePixels(605.0, 726.0, 121.0, 111.0);
+	yeti->addFramePixels(822.0, 5.0, 121.0, 111.0);
+
+	//attack
+	yeti->addFramePixels(5.0, 5.0, 224.0, 191.0);
+	yeti->addFramePixels(239.0, 5.0, 224.0, 191.0);
+	yeti->addFramePixels(473.0, 5.0, 224.0, 191.0);
+	yeti->addFramePixels(5.0, 206.0, 224.0, 191.0);
+	yeti->addFramePixels(239.0, 206.0, 224.0, 191.0);
+	yeti->addFramePixels(473.0, 206.0, 224.0, 191.0);
+	yeti->addFramePixels(5.0, 407.0, 224.0, 191.0);
+	yeti->addFramePixels(239.0, 407.0, 224.0, 191.0);
+	yeti->addFramePixels(473.0, 407.0, 224.0, 191.0);
+
+	//die
+
+	yeti->addFramePixels(5.0, 608.0, 190.0, 108.0);
+	yeti->addFramePixels(205.0, 608.0, 190.0, 108.0);
+	yeti->addFramePixels(405.0, 608.0, 190.0, 108.0);
+	yeti->addFramePixels(605.0, 608.0, 190.0, 108.0);
+	yeti->addFramePixels(5.0, 726.0, 190.0, 108.0);
+
+	yeti->addSequence({ 0, 1, 2 });
+	yeti->addSequence({ 3, 4, 5, 6 });
+	yeti->addSequence({ 7, 8, 9, 10, 11, 12, 13, 14, 15 });
+	yeti->addSequence({ 16, 17, 18, 19, 20 });
+	yeti->setFramesPerSecond(10.0);
+
 	
-	player = new PlatformerEntity(yetisprite, 0.0f, 0.0f);
-	//player->setStatic();
 
-	for(int i = 0; i < 1; i++){
-		//platformEntities.push_back(new PlatformerEntity(blockSprite2, i* 0.16f - 0.4, -0.6f));
-	}
-	
-	Reset();
+
+	//test = mine;
+	//test->setFramesPerSecond(1.0);
+	//test->animate(1);
+	//test->enableLooping();
+	//test->scale(0.5);
+	//test->scaleXY(0.5, 10.5);
+	// 48.0, 0.0, 16.0, 16.0
 }
 
 void StateGameLevel::ProcessEvents(SDL_Event& event){
@@ -86,7 +153,7 @@ void StateGameLevel::ProcessEvents(SDL_Event& event){
 	if (event.type == SDL_KEYDOWN){
 		if (!event.key.repeat){
 			if (event.key.keysym.scancode == SDL_SCANCODE_W){
-				player->Up();
+				//player->Up();
 			}
 			else if (event.key.keysym.scancode == SDL_SCANCODE_ESCAPE){
 				done = true;
@@ -94,15 +161,15 @@ void StateGameLevel::ProcessEvents(SDL_Event& event){
 			}
 		}
 		if (event.key.keysym.scancode == SDL_SCANCODE_A){
-			player->Left();
+			//player->Left();
 		}
 		else if (event.key.keysym.scancode == SDL_SCANCODE_D){
-			player->Right();
+			//player->Right();
 		}
 	}
 	else if(event.type == SDL_KEYUP){
 		if (event.key.keysym.sym == SDLK_a || event.key.keysym.sym == SDLK_d){
-			player->StopLR();
+			//player->StopLR();
 		}
 	}
 }
@@ -122,6 +189,7 @@ void StateGameLevel::detectCollisionY(PlatformerEntity* entity, std::vector<Plat
 }
 
 void StateGameLevel::Update(float elapsed){
+	/*
 	for (int i = 0; i < platformBlocks.size(); i++){
 		platformBlocks[i]->ResetCollide();
 		platformBlocks[i]->UpdateY(elapsed);
@@ -148,11 +216,15 @@ void StateGameLevel::Update(float elapsed){
 	detectCollisionX(player, platformEntities);
 
 	player->HandleCollision(elapsed);
-	
+	*/
 }
 
 void StateGameLevel::Render(float elapsed){
 	//DrawText1(fontTexture, "Score: " +std::to_string(score), 0.075f, 0.0f, 0.5f, 0.9f, 1.0f, 0.0f, 0.0f, 0.5f);
+	if (test != nullptr){
+		test->Draw(elapsed, 0.0f, 0.0f);
+	}
+	/*
 	for (int i = 0; i < platformBlocks.size(); i++){
 		platformBlocks[i]->Render(elapsed);
 	}
@@ -160,7 +232,7 @@ void StateGameLevel::Render(float elapsed){
 		platformEntities[i]->Render(elapsed);
 	}
 	player->Render(elapsed);
-
+	*/
 
 }
 
@@ -169,6 +241,6 @@ unsigned int StateGameLevel::getScore() const{
 }
 
 void StateGameLevel::Reset(){
-	score = 0;
+
 	
 }

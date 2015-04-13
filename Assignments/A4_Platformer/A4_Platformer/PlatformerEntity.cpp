@@ -1,7 +1,7 @@
 #include "PlatformerEntity.h"
 
 
-PlatformerEntity::PlatformerEntity(SpriteBase &sprite, float x, float y)
+PlatformerEntity::PlatformerEntity(AnimatedSprite &sprite, float x, float y)
 	: PlatformerEntityBase(x, y), sprite(sprite)
 {
 
@@ -18,7 +18,7 @@ void PlatformerEntity::Update(float elapsed){
 
 void PlatformerEntity::Render(float elapsed){
 	if (enabled){
-		sprite.Draw(x, y);
+		sprite.Draw(elapsed, x, y);
 	}
 }
 

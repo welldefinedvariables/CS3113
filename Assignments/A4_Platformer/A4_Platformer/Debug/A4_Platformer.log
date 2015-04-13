@@ -1,4 +1,4 @@
-﻿Build started 4/12/2015 6:45:17 PM.
+﻿Build started 4/12/2015 10:25:41 PM.
      1>Project "D:\Users\George\Documents\GitHub\CS3113\Assignments\A4_Platformer\A4_Platformer\A4_Platformer.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\SDL2\include /IC:\SDL2_image\include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt StateGameLevel.cpp
@@ -7,15 +7,13 @@
      1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\entity.h(24): warning C4812: obsolete declaration style: please use 'Entity<T>::Entity' instead
      1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\entity.h(32): warning C4812: obsolete declaration style: please use 'Entity<T>::~Entity' instead
      1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(12): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(51): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(53): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(57): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(125): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(132): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(156): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(159): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(49): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(67): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(78): warning C4305: 'argument' : truncation from 'double' to 'float'
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Users\George\Documents\GitHub\CS3113\Assignments\A4_Platformer\Debug\A4_Platformer.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\SDL2\lib\x86 /LIBPATH:C:\SDL2_image\lib\x86 SDL2.lib SDL2main.lib SDL2_image.lib OpenGL32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Users\George\Documents\GitHub\CS3113\Assignments\A4_Platformer\Debug\A4_Platformer.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Users\George\Documents\GitHub\CS3113\Assignments\A4_Platformer\Debug\A4_Platformer.lib" /MACHINE:X86 Debug\Application.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Users\George\Documents\GitHub\CS3113\Assignments\A4_Platformer\Debug\A4_Platformer.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\SDL2\lib\x86 /LIBPATH:C:\SDL2_image\lib\x86 SDL2.lib SDL2main.lib SDL2_image.lib OpenGL32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Users\George\Documents\GitHub\CS3113\Assignments\A4_Platformer\Debug\A4_Platformer.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Users\George\Documents\GitHub\CS3113\Assignments\A4_Platformer\Debug\A4_Platformer.lib" /MACHINE:X86 Debug\AnimatedSprite.obj
+         Debug\Animation.obj
+         Debug\Application.obj
          Debug\EntityBase.obj
          Debug\main.obj
          Debug\PlatformerEntity.obj
@@ -30,4 +28,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.95
+Time Elapsed 00:00:01.32

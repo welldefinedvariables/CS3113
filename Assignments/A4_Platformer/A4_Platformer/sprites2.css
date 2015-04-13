@@ -4,56 +4,68 @@
     display: block;
 }
 
-.sprite-coins {
+.sprite-coin {
     width: 47px;
     height: 47px;
-    background-position: 0 0;
+    background-position: -5px -5px;
 }
 
 .sprite-doorClosed {
     width: 70px;
     height: 140px;
-    background-position: -47px 0;
+    background-position: -62px -5px;
 }
 
 .sprite-doorOpen {
     width: 70px;
     height: 140px;
-    background-position: -117px 0;
+    background-position: -142px -5px;
+}
+
+.sprite-snow {
+    width: 70px;
+    height: 70px;
+    background-position: -5px -155px;
+}
+
+.sprite-snowblock {
+    width: 70px;
+    height: 70px;
+    background-position: -85px -155px;
+}
+
+.sprite-snowyblock {
+    width: 70px;
+    height: 70px;
+    background-position: -165px -155px;
 }
 
 .sprite-spinner {
-    width: 63px;
+    width: 62px;
     height: 62px;
-    background-position: 0 -140px;
+    background-position: -222px -5px;
 }
 
-.sprite-spinner_dead {
-    width: 63px;
+.sprite-spinnerdead {
+    width: 62px;
     height: 62px;
-    background-position: -63px -140px;
+    background-position: -222px -77px;
 }
 
-.sprite-spinner_hit {
-    width: 61px;
-    height: 61px;
-    background-position: -126px -140px;
+.sprite-spinnerhit {
+    width: 62px;
+    height: 62px;
+    background-position: -245px -149px;
 }
 
-.sprite-spinner_spin {
-    width: 61px;
-    height: 61px;
-    background-position: -187px 0;
+.sprite-spinnerspin {
+    width: 62px;
+    height: 62px;
+    background-position: -245px -221px;
 }
 
-.sprite-tundra {
+.sprite-waterice {
     width: 70px;
     height: 70px;
-    background-position: -187px -61px;
-}
-
-.sprite-tundraCenter {
-    width: 70px;
-    height: 70px;
-    background-position: -187px -131px;
+    background-position: -294px -5px;
 }

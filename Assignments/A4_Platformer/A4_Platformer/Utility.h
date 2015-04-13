@@ -1,10 +1,10 @@
 #pragma once
  
-#define WORLD_WIDTH 1280
-#define WORLD_HEIGHT 960
+#define WORLD_WIDTH 800
+#define WORLD_HEIGHT 600
 
-#define RESOLUTION_X 1280
-#define RESOLUTION_Y 960
+#define RESOLUTION_X 800
+#define RESOLUTION_Y 600
 
 #define OPENGL_WIDTH 2.66f
 #define OPENGL_HEIGHT 2.0f
