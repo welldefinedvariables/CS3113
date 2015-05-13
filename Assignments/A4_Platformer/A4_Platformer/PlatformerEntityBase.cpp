@@ -137,7 +137,7 @@ void PlatformerEntityBase::Right(){
 }
 void PlatformerEntityBase::Up(){
 	if (collidedBottom){
-		yVelocity = 2.0;
+		yVelocity = 4.0;
 	}
 }
 void PlatformerEntityBase::Down(){

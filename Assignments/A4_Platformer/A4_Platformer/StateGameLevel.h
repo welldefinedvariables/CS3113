@@ -15,7 +15,9 @@
 
 #include <ctime>
 #include <array>
+#include <vector>
 using std::array;
+using std::vector;
 
 class StateGameLevel:public StateBase{
 public:
@@ -36,4 +38,6 @@ private:
 	unsigned int score;
 	
 	AnimatedSprite *test;
+	vector<PlatformerEntity*> platformEntities;
+	PlatformerEntity* player;
 };

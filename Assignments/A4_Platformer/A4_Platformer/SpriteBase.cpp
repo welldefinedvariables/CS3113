@@ -7,7 +7,8 @@ SpriteBase::SpriteBase(unsigned int textureID) :
 SpriteBase::SpriteBase(unsigned int textureID, float u, float v, float width, float height)
 :textureID(textureID), u(u), v(v), width(width), height(height), 
 scaleX(1.0f), scaleY(1.0f), rotation(0.0f), 
-r(1.0f), g(1.0f), b(1.0f), a(1.0f) {
+r(1.0f), g(1.0f), b(1.0f), a(1.0f), alignCenter(true) {
+
 }
 
 SpriteBase::SpriteBase(unsigned int textureID, size_t index, size_t spriteCountX, size_t spriteCountY) : SpriteBase(textureID,
@@ -32,11 +33,26 @@ void SpriteBase::Draw(float x, float y){
 	glRotatef(rotation, 0.0, 0.0, 1.0);
 	glScalef(scaleX, scaleY, 1.0);
 
+	
+	/*
 	GLfloat quad[] = { -width / 2, height / 2,
 		-width / 2, -height / 2,
 		width / 2, -height / 2,
 		width / 2, height / 2 };
-	glVertexPointer(2, GL_FLOAT, 0, quad);
+	
+	GLfloat quad[] = { -width, height,
+		-width, 0.0f,
+		0.0f, 0.0f,
+		0.0f, height };
+	*/
+
+	if (alignCenter){
+		alignQuadCenter();
+	}
+	else{
+		alignQuadBottomRight();
+	}
+	glVertexPointer(2, GL_FLOAT, 0, this->quad);
 	glEnableClientState(GL_VERTEX_ARRAY);
 
 	GLfloat quadUVs[] = { u, v,

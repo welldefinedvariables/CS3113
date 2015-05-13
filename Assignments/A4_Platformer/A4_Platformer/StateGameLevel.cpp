@@ -50,13 +50,18 @@ void StateGameLevel::Init(){
 
 	AnimatedSprite *snowblock = new AnimatedSprite(blockss, 384.0, 384.0);
 	snowblock->addFramePixels(5.0, 155.0, 70.0, 70.0);
-	snowblock->scaleXY(0.5, 10.0);
+	snowblock->scaleXY(1.0, 12.0);
 	snowblock->addSequence({ 0 });
 	
 	AnimatedSprite *snowground = new AnimatedSprite(blockss, 384.0, 384.0);
 	snowground->addFramePixels(165.0, 155.0, 70.0, 70.0);
-	snowground->scaleXY(20, 0.5);
+	snowground->scaleXY(16, 1.0);
 	snowground->addSequence({ 0 });
+
+	AnimatedSprite *snowblock2 = new AnimatedSprite(blockss, 384.0, 384.0);
+	snowblock2->addFramePixels(165.0, 155.0, 70.0, 70.0);
+	snowblock2->scaleXY(1.0, 1.0);
+	snowblock2->addSequence({ 0 });
 
 	AnimatedSprite *door = new AnimatedSprite(blockss, 384.0, 384.0);
 	door->addFramePixels(62.0, 5.0, 70.0, 140.0);
@@ -64,7 +69,7 @@ void StateGameLevel::Init(){
 	door->addSequence({ 0 });
 	door->addSequence({ 0,1 });
 	door->setFramesPerSecond(1.0);
-	door->scale(0.6);
+	door->scale(1.0);
 
 	AnimatedSprite *mine = new AnimatedSprite(blockss, 384.0, 384.0);
 
@@ -98,7 +103,7 @@ void StateGameLevel::Init(){
 	kid->enableLooping();
 
 	AnimatedSprite *yeti = new AnimatedSprite(yetiss, 1024.0f, 1024.0f);
-	yeti->scale(2.0);
+	yeti->scale(3.0);
 	//stand
 	yeti->addFramePixels(822.0, 126.0, 100.0, 107.0);
 	yeti->addFramePixels(838.0, 243.0, 100.0, 107.0);
@@ -134,9 +139,21 @@ void StateGameLevel::Init(){
 	yeti->addSequence({ 7, 8, 9, 10, 11, 12, 13, 14, 15 });
 	yeti->addSequence({ 16, 17, 18, 19, 20 });
 	yeti->setFramesPerSecond(10.0);
+	yeti->setAlignQuadBottomRight();
 
 	
 
+	platformEntities.push_back(new PlatformerEntity(*snowground, 0.0, -1.0 + snowground->getHeight() / 2));
+	platformEntities.push_back(new PlatformerEntity(*snowground, 0.6, -1.0 + 7*snowground->getHeight() / 2));
+	platformEntities.push_back(new PlatformerEntity(*snowground, -0.6, -1.0 + 13 * snowground->getHeight() / 2));
+	platformEntities.push_back(new PlatformerEntity(*snowblock, -1.33 + snowblock->getWidth() / 2, 0.0));
+	platformEntities.push_back(new PlatformerEntity(*snowblock, 1.33 - snowblock->getWidth() / 2, 0.0));
+	platformEntities.push_back(new PlatformerEntity(*door, -0.9, -1.0 + 14 * snowground->getHeight() / 2 + door->getHeight()/2 ));
+	platformEntities.push_back(new PlatformerEntity(*snowblock2,- 0.9 +door->getWidth() + snowblock2->getWidth(), -1.0 + 14 * snowground->getHeight() / 2 + snowblock2->getHeight() / 2));
+	
+	
+	platformEntities.push_back(new PlatformerEntity(*yeti, 0, -1.0 + 14 * snowground->getHeight() / 2 ));
+	player = new PlatformerEntity(*kid, 0.0, -1.0 + snowground->getHeight() + kid->getHeight()/2  );
 
 	//test = mine;
 	//test->setFramesPerSecond(1.0);
@@ -153,7 +170,7 @@ void StateGameLevel::ProcessEvents(SDL_Event& event){
 	if (event.type == SDL_KEYDOWN){
 		if (!event.key.repeat){
 			if (event.key.keysym.scancode == SDL_SCANCODE_W){
-				//player->Up();
+				player->Up();
 			}
 			else if (event.key.keysym.scancode == SDL_SCANCODE_ESCAPE){
 				done = true;
@@ -161,15 +178,15 @@ void StateGameLevel::ProcessEvents(SDL_Event& event){
 			}
 		}
 		if (event.key.keysym.scancode == SDL_SCANCODE_A){
-			//player->Left();
+			player->Left();
 		}
 		else if (event.key.keysym.scancode == SDL_SCANCODE_D){
-			//player->Right();
+			player->Right();
 		}
 	}
 	else if(event.type == SDL_KEYUP){
 		if (event.key.keysym.sym == SDLK_a || event.key.keysym.sym == SDLK_d){
-			//player->StopLR();
+			player->StopLR();
 		}
 	}
 }
@@ -205,18 +222,19 @@ void StateGameLevel::Update(float elapsed){
 		detectCollisionX(platformEntities[i], platformBlocks);
 		platformEntities[i]->HandleCollision(elapsed);
 	}
+	*/
 
 	player->ResetCollide();
 	player->UpdateY(elapsed);
-	detectCollisionY(player, platformBlocks);
+	//detectCollisionY(player, platformBlocks);
 	detectCollisionY(player, platformEntities);
 
 	player->UpdateX(elapsed);
-	detectCollisionX(player, platformBlocks);
+	//detectCollisionX(player, platformBlocks);
 	detectCollisionX(player, platformEntities);
 
 	player->HandleCollision(elapsed);
-	*/
+	
 }
 
 void StateGameLevel::Render(float elapsed){
@@ -228,11 +246,12 @@ void StateGameLevel::Render(float elapsed){
 	for (int i = 0; i < platformBlocks.size(); i++){
 		platformBlocks[i]->Render(elapsed);
 	}
+	*/
 	for (int i = 0; i < platformEntities.size(); i++){
 		platformEntities[i]->Render(elapsed);
 	}
 	player->Render(elapsed);
-	*/
+	
 
 }
 

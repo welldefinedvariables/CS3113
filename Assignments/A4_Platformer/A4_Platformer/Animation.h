@@ -18,8 +18,12 @@ public:
 
 	void Draw(float elapsed, float x, float y);
 
-	void addFrame(float u, float v, float width, float height){ frames.push_back({ u, v, width, height }); }
-	void addFramePixels(float u, float v, float width, float height){ frames.push_back({ u / sheetWidth, v / sheetHeight, width / sheetWidth, height / sheetHeight }); }
+	void addFrame(float u, float v, float width, float height){ 
+		frames.push_back({ u, v, width, height });
+		this->width = width;
+		this->height = height;
+	}
+	void addFramePixels(float u, float v, float width, float height){ addFrame(u / sheetWidth, v / sheetHeight, width / sheetWidth, height / sheetHeight); }
 	void setFramesPerSecond(float fps){ this->framesPerSecond = fps; }
 	void setFrame(size_t index){
 		this->u = frames[index].u;

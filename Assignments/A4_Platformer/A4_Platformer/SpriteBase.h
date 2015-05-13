@@ -20,11 +20,41 @@ public:
 	void tintRGB(float r, float g, float b) { this->r = r; this->g = g; this->b = b; }
 	void tintRGBA(float r, float g, float b, float a) { this->r = r; this->g = g; this->b = b; this->a = a; }
 
+	void alignQuadCenter(){
+		this->quad[0] = -width / 2;
+		this->quad[1] = height / 2;
+		this->quad[2] = -width / 2;
+		this->quad[3] = -height / 2;
+		this->quad[4] = width / 2;
+		this->quad[5] = -height / 2;
+		this->quad[6] = width / 2;
+		this->quad[7] = height / 2;
+	}
+	void alignQuadBottomRight(){
+		this->quad[0] = -width;
+		this->quad[1] = height;
+		this->quad[2] = -width;
+		this->quad[3] = 0.0f;
+		this->quad[4] = 0;
+		this->quad[5] = 0;
+		this->quad[6] = 0;
+		this->quad[7] = height;
+	}
+
+	void setAlignQuadBottomRight(){
+		alignCenter = false;
+	}
 	float getWidth() const { return width * scaleX; }
-	float getHeight() const { return height * scaleY; }
+	float getHeight() const { 
+		return height * scaleY; 
+	}
 
 protected:
 	GLuint textureID;
+
+	GLfloat quad[8];
+
+	bool alignCenter;
 
 	float u;
 	float v;
