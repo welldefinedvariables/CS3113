@@ -1,29 +1,54 @@
-﻿Build started 4/16/2015 5:33:45 PM.
-     1>Project "C:\Users\George\Documents\GitHub\CS3113\Assignments\A4_Platformer\A4_Platformer\A4_Platformer.vcxproj" on node 2 (Build target(s)).
+﻿Build started 5/13/2015 11:43:27 AM.
+     1>Project "D:\Users\George\Documents\GitHub\CS3113\Assignments\A4_Platformer\A4_Platformer\A4_Platformer.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\SDL2\include /IC:\SDL2_image\include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt StateGameLevel.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\SDL2\include /IC:\SDL2_image\include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt AnimatedSprite.cpp Animation.cpp Application.cpp EntityBase.cpp main.cpp PlatformerEntity.cpp PlatformerEntityBase.cpp StateBase.cpp StateGameLevel.cpp StateGameOver.cpp StateMainMenu.cpp SpriteBase.cpp
+         SpriteBase.cpp
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\spritebase.cpp(18): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+         StateMainMenu.cpp
+         StateGameOver.cpp
          StateGameLevel.cpp
-     1>c:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\entitybase.h(20): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\entity.h(24): warning C4812: obsolete declaration style: please use 'Entity<T>::Entity' instead
-     1>c:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\entity.h(32): warning C4812: obsolete declaration style: please use 'Entity<T>::~Entity' instead
-     1>c:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(12): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(49): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(83): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(146): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(147): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(147): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(148): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(148): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(149): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(150): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(151): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(151): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(152): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(155): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(156): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(250): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\entitybase.h(20): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\entity.h(24): warning C4812: obsolete declaration style: please use 'Entity<T>::Entity' instead
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\entity.h(32): warning C4812: obsolete declaration style: please use 'Entity<T>::~Entity' instead
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(12): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(49): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(83): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(146): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(147): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(147): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(148): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(148): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(149): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(150): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(151): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(151): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(152): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(155): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(156): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\stategamelevel.cpp(250): warning C4018: '<' : signed/unsigned mismatch
+         StateBase.cpp
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\statebase.cpp(57): warning C4018: '<' : signed/unsigned mismatch
+         PlatformerEntityBase.cpp
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\entitybase.h(20): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\platformerentitybase.cpp(22): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\platformerentitybase.cpp(53): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
+         PlatformerEntity.cpp
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\entitybase.h(20): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+         main.cpp
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\entitybase.h(20): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\entity.h(24): warning C4812: obsolete declaration style: please use 'Entity<T>::Entity' instead
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\entity.h(32): warning C4812: obsolete declaration style: please use 'Entity<T>::~Entity' instead
+         EntityBase.cpp
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\entitybase.h(20): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+         Application.cpp
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\entitybase.h(20): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\entity.h(24): warning C4812: obsolete declaration style: please use 'Entity<T>::Entity' instead
+     1>d:\users\george\documents\github\cs3113\assignments\a4_platformer\a4_platformer\entity.h(32): warning C4812: obsolete declaration style: please use 'Entity<T>::~Entity' instead
+         Animation.cpp
+         AnimatedSprite.cpp
+         Generating Code...
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\George\Documents\GitHub\CS3113\Assignments\A4_Platformer\Debug\A4_Platformer.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\SDL2\lib\x86 /LIBPATH:C:\SDL2_image\lib\x86 SDL2.lib SDL2main.lib SDL2_image.lib OpenGL32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\George\Documents\GitHub\CS3113\Assignments\A4_Platformer\Debug\A4_Platformer.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\George\Documents\GitHub\CS3113\Assignments\A4_Platformer\Debug\A4_Platformer.lib" /MACHINE:X86 Debug\AnimatedSprite.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Users\George\Documents\GitHub\CS3113\Assignments\A4_Platformer\Debug\A4_Platformer.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\SDL2\lib\x86 /LIBPATH:C:\SDL2_image\lib\x86 SDL2.lib SDL2main.lib SDL2_image.lib OpenGL32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Users\George\Documents\GitHub\CS3113\Assignments\A4_Platformer\Debug\A4_Platformer.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Users\George\Documents\GitHub\CS3113\Assignments\A4_Platformer\Debug\A4_Platformer.lib" /MACHINE:X86 Debug\AnimatedSprite.obj
          Debug\Animation.obj
          Debug\Application.obj
          Debug\EntityBase.obj
@@ -35,9 +60,11 @@
          Debug\StateGameOver.obj
          Debug\StateMainMenu.obj
          Debug\SpriteBase.obj
-         A4_Platformer.vcxproj -> C:\Users\George\Documents\GitHub\CS3113\Assignments\A4_Platformer\Debug\A4_Platformer.exe
-     1>Done Building Project "C:\Users\George\Documents\GitHub\CS3113\Assignments\A4_Platformer\A4_Platformer\A4_Platformer.vcxproj" (Build target(s)).
+         LINK : D:\Users\George\Documents\GitHub\CS3113\Assignments\A4_Platformer\Debug\A4_Platformer.exe not found or not built by the last incremental link; performing full link
+     1>MSVCRTD.lib(cinitexe.obj) : warning LNK4098: defaultlib 'msvcrt.lib' conflicts with use of other libs; use /NODEFAULTLIB:library
+         A4_Platformer.vcxproj -> D:\Users\George\Documents\GitHub\CS3113\Assignments\A4_Platformer\Debug\A4_Platformer.exe
+     1>Done Building Project "D:\Users\George\Documents\GitHub\CS3113\Assignments\A4_Platformer\A4_Platformer\A4_Platformer.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.78
+Time Elapsed 00:00:07.55
